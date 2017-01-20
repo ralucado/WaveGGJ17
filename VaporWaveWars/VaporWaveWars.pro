@@ -8,11 +8,13 @@ SOURCES += main.cpp \
     game.cpp \
     mygame.cpp \
     button.cpp \
-    character.cpp
+    character.cpp \
+    compas.cpp
 
 HEADERS += \
     game.hpp \
     mygame.hpp \
     commons.hpp \
     button.hpp \
-    character.hpp
+    character.hpp \
+    compas.hpp
