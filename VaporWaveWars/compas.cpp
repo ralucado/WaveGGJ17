@@ -1,7 +1,7 @@
 #include "compas.hpp"
 
 Compas::Compas() {
-    spaceTime = 0;
+    spaceTime = 1;
     isPress = false;
 }
 
@@ -9,7 +9,7 @@ void Compas::start() {
     if (not isPress) {
         std::cout << "start" << std::endl;
         isPress = true;
-        spaceTime = 0;
+        spaceTime = 1;
         notes = std::vector<int>();
     }
 }
@@ -17,7 +17,7 @@ void Compas::start() {
 void Compas::add() {
     if (isPress) {
         notes.push_back(spaceTime);
-        spaceTime = 0;
+        spaceTime = 1;
         std::cout << "add" << std::endl;
     }
 }
@@ -32,7 +32,7 @@ void Compas::end() {
     }
 }
 
-void Compas::incriseTime() {
+void Compas::incraeseTime() {
     ++spaceTime;
 }
 
@@ -40,11 +40,16 @@ int Compas::get (int i) const {
     return notes[i];
 }
 
+int Compas::size() const {
+    return notes.size();
+}
+
 bool Compas::operator ==(const Compas& d) const{
     int n = notes.size();
+    if (n != d.size()) return false;
     for (int i = 0; i  < n; ++i) {
         float diff = ((float) (std::abs(notes[i] - d.get(i))))/((float) (notes[i]));
-        if (diff > margeErr) return false;
+        if (diff > MARGEERR) return false;
     }
     return true;
 }

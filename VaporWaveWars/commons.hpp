@@ -7,6 +7,9 @@
 #include <assert.h>
 #include <iostream>
 #include <string>
+
+#define MARGEERR 0.30f
+#define BLACKVALUE 0.00025f
 #define ASSERT(expression) do \
 { \
     if(!(expression)) { \

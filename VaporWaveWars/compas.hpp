@@ -4,24 +4,22 @@
 #include <vector>
 #include <iostream>
 #include <cmath>
+#include <commons.hpp>
 
-static const float margeErr = 0.80f;
-
-class Compas
-{
-
+class Compas {
 private:
     bool isPress;
     int spaceTime;
     std::vector<int> notes;
+    int get(int i) const;
+    int size() const;
 
 public:
     Compas();
     void start();
     void add();
     void end();
-    void incriseTime();
-    int get(int i) const;
+    void incraeseTime();
     bool operator ==(const Compas& d) const;
 };
 
