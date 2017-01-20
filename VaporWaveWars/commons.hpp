@@ -32,5 +32,8 @@ namespace GameState {
     enum gameState{menu,inGame,help,credits};
 }
 
+namespace PlayerState {
+    enum playerState{idle, attacking};
+}
 
 #endif // COMMONS_HPP
