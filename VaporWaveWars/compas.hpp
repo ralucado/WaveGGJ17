@@ -7,8 +7,7 @@
 
 static const float margeErr = 0.80f;
 
-class Compas
-{
+class Compas{
 
 private:
     bool isPress;

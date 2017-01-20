@@ -8,6 +8,8 @@
 #include <iostream>
 #include <string>
 
+const int SCENE_NUM = 4;
+
 #define ASSERT(expression) do \
 { \
     if(!(expression)) { \
@@ -26,8 +28,8 @@ namespace ButtonState {
     enum basicState {released, active, pressed, off};
 }
 
-namespace GameState {
-    enum gameState{menu,inGame,help,credits};
+namespace GameScene {
+    enum gameScene{menu,inGame,help,credits};
 }
 
 namespace PlayerState {
