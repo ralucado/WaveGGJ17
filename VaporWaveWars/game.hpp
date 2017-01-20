@@ -10,7 +10,7 @@ class Game {
 
         virtual void run();
 
-        bool isRunning = true;
+        bool isRunning =/* very very*/ true;
     protected:
         virtual void update(float deltaTime, sf::RenderWindow *window) = 0;
         virtual void draw(sf::RenderWindow *window) = 0;

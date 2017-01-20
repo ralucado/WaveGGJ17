@@ -25,7 +25,7 @@ void MyGame::update(float deltaTime, sf::RenderWindow*window) {
             case (sf::Event::MouseButtonPressed):
             switch(_state){
                 case(GameState::menu):
-                //std::cout << "still in menu" << std::endl;
+                std::cout << "still in menu" << std::endl;
                 break;
                 default:
                 break;

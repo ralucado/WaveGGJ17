@@ -7,6 +7,7 @@
 #include <assert.h>
 #include <iostream>
 #include <string>
+
 #define ASSERT(expression) do \
 { \
     if(!(expression)) { \
@@ -29,5 +30,8 @@ namespace GameState {
     enum gameState{menu,inGame,help,credits};
 }
 
+namespace PlayerState {
+    enum playerState{idle, attacking};
+}
 
 #endif // COMMONS_HPP
