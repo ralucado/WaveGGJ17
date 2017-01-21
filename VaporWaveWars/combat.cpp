@@ -30,6 +30,9 @@ void Combat::initShader() {
     _background.setTexture(_text);
     _shader.loadFromFile(WORK_DIR+"Resources/shader.frag", sf::Shader::Fragment);
     _shader.setParameter("resolution", sf::Vector2f(W_WIDTH, W_HEIGHT));
+
+    _shaderHalo.loadFromFile(WORK_DIR+"Resources/shaderHalo.frag", sf::Shader::Fragment);
+    _shaderHalo.setParameter("blue", false);
 }
 
 void Combat::update(float deltaTime, sf::RenderWindow *window) {
@@ -39,6 +42,7 @@ void Combat::update(float deltaTime, sf::RenderWindow *window) {
     time += deltaTime;
 
     _shader.setParameter("time", time);
+    _shaderHalo.setParameter("time", time);
 }
 
 void Combat::draw(sf::RenderWindow *window) {

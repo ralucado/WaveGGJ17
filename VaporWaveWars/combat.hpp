@@ -30,6 +30,8 @@ private:
     sf::Sprite _background;
     sf::Shader _shader;
 
+    sf::Shader _shaderHalo;
+
     Score *scoreEnemy, *scorePlayer;
     void initShader();
     void enemyManager(bool aux);
