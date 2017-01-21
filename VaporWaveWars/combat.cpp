@@ -5,6 +5,12 @@ Combat::Combat() {
     enemy = new IaEnemy();
 }
 
+Combat::Combat(bool ia) {
+    this->ia = ia;
+    playerOneTurn = true;
+    if (ia) enemy = new IaEnemy();
+    else enemy = new Player();
+}
 
 void Combat::update(float deltaTime, sf::RenderWindow *window) {
     if (playerOneTurn) player.update(deltaTime, window);

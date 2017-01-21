@@ -11,6 +11,7 @@
 class Combat : public Scene {
 public:
     Combat();
+    Combat(bool ia);
     Combat(const Combat& m) = delete;
     Combat(const Combat&& m) = delete;
     Combat& operator=(Combat& m) = delete;
