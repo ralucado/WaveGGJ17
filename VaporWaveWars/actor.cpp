@@ -1,12 +1,10 @@
 #include "actor.hpp"
 Actor::Actor() {
-    score = 0;
     animate = PlayerState::attacking;
     this->character = new Character(0);
 }
 
 Actor::Actor(int num) {
-    score = 0;
     animate = PlayerState::attacking;
     this->character = new Character(num);
 }
@@ -35,12 +33,4 @@ bool Actor::hitBy(Compas enemy) const {
 
 Compas Actor::getAttack() const {
     return compas;
-}
-
-void Actor::upScore() {
-    ++score;
-}
-
-int Actor::getScore() const {
-    return score;
 }

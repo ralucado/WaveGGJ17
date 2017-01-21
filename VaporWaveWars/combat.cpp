@@ -44,8 +44,8 @@ void Combat::draw(sf::RenderWindow *window) {
     window->draw(_background, &_shader);
     player->draw(window);
     enemy->draw(window);
-    window->draw(*scorePlayer);
-    window->draw(*scoreEnemy);
+    scorePlayer->draw(window);
+    scoreEnemy->draw(window);
 }
 
 void Combat::updateEvents(sf::Event e) {
@@ -54,8 +54,7 @@ void Combat::updateEvents(sf::Event e) {
         if (!aux) { //end of player one ritm
             if (!attacking) {
                 if(!player->hitBy(enemy->getAttack())) {
-                    enemy->upScore();
-                    scoreEnemy->setScore(enemy->getScore());
+                    scoreEnemy->incrisScore();
                 }
             }
             else playerOneTurn = aux;
@@ -72,8 +71,7 @@ void Combat::enemyManager(bool aux) {
     if (aux) {
         if (!attacking) {
             if(!enemy->hitBy(player->getAttack())) {
-                player->upScore();
-                scorePlayer->setScore(player->getScore());
+                scorePlayer->incrisScore();
             }
         }
         else playerOneTurn = aux;

@@ -8,6 +8,7 @@
 #include "iaenemy.hpp"
 #include "actor.hpp"
 #include "soundmanager.hpp"
+#include "score.hpp"
 
 class Combat : public Scene {
 public:
@@ -29,6 +30,7 @@ private:
     sf::Sprite _background;
     sf::Shader _shader;
 
+    Score *scoreEnemy, *scorePlayer;
     void initShader();
     void enemyManager(bool aux);
 };
