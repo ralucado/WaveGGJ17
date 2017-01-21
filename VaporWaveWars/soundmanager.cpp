@@ -29,7 +29,16 @@ sf::SoundBuffer     SoundManager::atk17;
 sf::SoundBuffer     SoundManager::atk18;
 sf::SoundBuffer     SoundManager::atk19;
 sf::SoundBuffer     SoundManager::atk20;
-
+sf::SoundBuffer     SoundManager::fail1;
+sf::SoundBuffer     SoundManager::fail2;
+sf::SoundBuffer     SoundManager::fail3;
+sf::SoundBuffer     SoundManager::fail4;
+sf::SoundBuffer     SoundManager::fail5;
+sf::SoundBuffer     SoundManager::fail6;
+sf::SoundBuffer     SoundManager::note1;
+sf::SoundBuffer     SoundManager::note2;
+sf::SoundBuffer     SoundManager::note3;
+sf::SoundBuffer     SoundManager::note4;
 
 std::map<std::string, sf::Sound> SoundManager::soundMap;
 std::map<std::string, sf::Music> SoundManager::musicMap;
@@ -83,6 +92,26 @@ void SoundManager::load(){
     soundMap["atk19"].setBuffer(atk19);
     ASSERT(atk20.loadFromFile(WORK_DIR+"Resources/Sounds/Samples/20.wav"));
     soundMap["atk20"].setBuffer(atk20);
+    ASSERT(fail1.loadFromFile(WORK_DIR+"Resources/Sounds/Fails/1.wav"));
+    soundMap["fail1"].setBuffer(fail1);
+    ASSERT(fail2.loadFromFile(WORK_DIR+"Resources/Sounds/Fails/2.wav"));
+    soundMap["fail2"].setBuffer(fail2);
+    ASSERT(fail3.loadFromFile(WORK_DIR+"Resources/Sounds/Fails/3.wav"));
+    soundMap["fail3"].setBuffer(fail3);
+    ASSERT(fail4.loadFromFile(WORK_DIR+"Resources/Sounds/Fails/4.wav"));
+    soundMap["fail4"].setBuffer(fail4);
+    ASSERT(fail5.loadFromFile(WORK_DIR+"Resources/Sounds/Fails/5.wav"));
+    soundMap["fail5"].setBuffer(fail5);
+    ASSERT(fail6.loadFromFile(WORK_DIR+"Resources/Sounds/Fails/6.wav"));
+    soundMap["fail6"].setBuffer(fail6);
+    ASSERT(note1.loadFromFile(WORK_DIR+"Resources/Sounds/Notes/1.wav"));
+    soundMap["note1"].setBuffer(note1);
+    ASSERT(note2.loadFromFile(WORK_DIR+"Resources/Sounds/Notes/2.wav"));
+    soundMap["note2"].setBuffer(note2);
+    ASSERT(note3.loadFromFile(WORK_DIR+"Resources/Sounds/Notes/3.wav"));
+    soundMap["note3"].setBuffer(note3);
+    ASSERT(note4.loadFromFile(WORK_DIR+"Resources/Sounds/Notes/4.wav"));
+    soundMap["note4"].setBuffer(note4);
 
 }
 

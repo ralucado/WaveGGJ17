@@ -60,6 +60,9 @@ void Character::setState(PlayerState::playerState state){
         std::cout << "i am hurt" << std::endl;
         indexX = 0;
         indexY = 2 + magicNumber;
+        std::string sample = "fail"+std::to_string(rand()%6+1);
+        SoundManager::playSound(sample);
+        std::cout << "playing sample " << sample << std::endl;
     }
     else if (state == PlayerState::success){
         std::cout << "i am succeed!" << std::endl;
