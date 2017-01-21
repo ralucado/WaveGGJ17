@@ -55,7 +55,11 @@ SOURCES       = ../VaporWaveWars/main.cpp \
 		../VaporWaveWars/character.cpp \
 		../VaporWaveWars/compas.cpp \
 		../VaporWaveWars/scene.cpp \
-		../VaporWaveWars/menu.cpp 
+		../VaporWaveWars/menu.cpp \
+		../VaporWaveWars/combat.cpp \
+		../VaporWaveWars/player.cpp \
+		../VaporWaveWars/iaenemy.cpp \
+		../VaporWaveWars/actor.cpp 
 OBJECTS       = main.o \
 		game.o \
 		mygame.o \
@@ -63,7 +67,11 @@ OBJECTS       = main.o \
 		character.o \
 		compas.o \
 		scene.o \
-		menu.o
+		menu.o \
+		combat.o \
+		player.o \
+		iaenemy.o \
+		actor.o
 DIST          = ../../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/common/unix.conf \
 		../../../Qt/5.7/gcc_64/mkspecs/common/linux.conf \
@@ -214,14 +222,22 @@ DIST          = ../../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		character.hpp \
 		compas.hpp \
 		scene.hpp \
-		menu.hpp ../VaporWaveWars/main.cpp \
+		menu.hpp \
+		combat.hpp \
+		player.hpp \
+		iaenemy.hpp \
+		actor.hpp ../VaporWaveWars/main.cpp \
 		../VaporWaveWars/game.cpp \
 		../VaporWaveWars/mygame.cpp \
 		../VaporWaveWars/button.cpp \
 		../VaporWaveWars/character.cpp \
 		../VaporWaveWars/compas.cpp \
 		../VaporWaveWars/scene.cpp \
-		../VaporWaveWars/menu.cpp
+		../VaporWaveWars/menu.cpp \
+		../VaporWaveWars/combat.cpp \
+		../VaporWaveWars/player.cpp \
+		../VaporWaveWars/iaenemy.cpp \
+		../VaporWaveWars/actor.cpp
 QMAKE_TARGET  = VaporWaveWars
 DESTDIR       = 
 TARGET        = VaporWaveWars
@@ -571,7 +587,11 @@ main.o: ../VaporWaveWars/main.cpp ../VaporWaveWars/mygame.hpp \
 		../VaporWaveWars/menu.hpp \
 		../VaporWaveWars/scene.hpp \
 		../VaporWaveWars/button.hpp \
-		../VaporWaveWars/compas.hpp
+		../VaporWaveWars/combat.hpp \
+		../VaporWaveWars/compas.hpp \
+		../VaporWaveWars/player.hpp \
+		../VaporWaveWars/actor.hpp \
+		../VaporWaveWars/iaenemy.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../VaporWaveWars/main.cpp
 
 game.o: ../VaporWaveWars/game.cpp ../VaporWaveWars/game.hpp \
@@ -583,7 +603,12 @@ mygame.o: ../VaporWaveWars/mygame.cpp ../VaporWaveWars/mygame.hpp \
 		../VaporWaveWars/commons.hpp \
 		../VaporWaveWars/menu.hpp \
 		../VaporWaveWars/scene.hpp \
-		../VaporWaveWars/button.hpp
+		../VaporWaveWars/button.hpp \
+		../VaporWaveWars/combat.hpp \
+		../VaporWaveWars/compas.hpp \
+		../VaporWaveWars/player.hpp \
+		../VaporWaveWars/actor.hpp \
+		../VaporWaveWars/iaenemy.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mygame.o ../VaporWaveWars/mygame.cpp
 
 button.o: ../VaporWaveWars/button.cpp ../VaporWaveWars/button.hpp \
@@ -608,8 +633,38 @@ menu.o: ../VaporWaveWars/menu.cpp ../VaporWaveWars/menu.hpp \
 		../VaporWaveWars/scene.hpp \
 		../VaporWaveWars/game.hpp \
 		../VaporWaveWars/button.hpp \
-		../VaporWaveWars/mygame.hpp
+		../VaporWaveWars/mygame.hpp \
+		../VaporWaveWars/combat.hpp \
+		../VaporWaveWars/compas.hpp \
+		../VaporWaveWars/player.hpp \
+		../VaporWaveWars/actor.hpp \
+		../VaporWaveWars/iaenemy.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o menu.o ../VaporWaveWars/menu.cpp
+
+combat.o: ../VaporWaveWars/combat.cpp ../VaporWaveWars/combat.hpp \
+		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/compas.hpp \
+		../VaporWaveWars/scene.hpp \
+		../VaporWaveWars/game.hpp \
+		../VaporWaveWars/player.hpp \
+		../VaporWaveWars/actor.hpp \
+		../VaporWaveWars/iaenemy.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o combat.o ../VaporWaveWars/combat.cpp
+
+player.o: ../VaporWaveWars/player.cpp ../VaporWaveWars/player.hpp \
+		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/compas.hpp \
+		../VaporWaveWars/actor.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o player.o ../VaporWaveWars/player.cpp
+
+iaenemy.o: ../VaporWaveWars/iaenemy.cpp ../VaporWaveWars/iaenemy.hpp \
+		../VaporWaveWars/actor.hpp \
+		../VaporWaveWars/commons.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o iaenemy.o ../VaporWaveWars/iaenemy.cpp
+
+actor.o: ../VaporWaveWars/actor.cpp ../VaporWaveWars/actor.hpp \
+		../VaporWaveWars/commons.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o actor.o ../VaporWaveWars/actor.cpp
 
 ####### Install
 

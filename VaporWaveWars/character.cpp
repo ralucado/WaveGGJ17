@@ -2,8 +2,8 @@
 
 Character::Character(){
     ASSERT(texture.loadFromFile(spriteFile));
-    height = texture.getSize().y;
-    width = texture.getSize().x;
+    height = texture.getSize().y/5;
+    width = texture.getSize().x/5;
     next = timestamp = indexX = indexY = 0;
     setTexture(texture);
     sf::IntRect rect = sf::IntRect(indexX*width, indexY*height, width, height);
