@@ -1,12 +1,10 @@
 #include "player.hpp"
 
 Player::Player(int num) : Actor(num) {
-    animate = false;
     compas = Compas();
 }
 
 Player::Player() : Actor(1) {
-    animate = false;
     compas = Compas();
 }
 

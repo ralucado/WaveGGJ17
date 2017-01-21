@@ -20,7 +20,7 @@ public:
     void draw(sf::RenderWindow *window) final override;
     void updateEvents(sf::Event e) final override;
 private:
-    bool playerOneTurn, ia;
+    bool playerOneTurn, ia, attacking;
     Actor *player;
     Actor *enemy;
     float time;
@@ -29,7 +29,7 @@ private:
     sf::Shader _shader;
 
     void initShader();
-
+    void enemyManager(bool aux);
 };
 
 #endif // COMBAT_H

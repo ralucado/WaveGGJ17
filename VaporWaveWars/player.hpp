@@ -9,8 +9,6 @@ public:
     Player();
     Player(int num);
     bool event(sf::Event e) final override;
-private:
-    Compas compas;
 protected:
     bool updateLogic(float deltaTime, sf::RenderWindow *window);
 

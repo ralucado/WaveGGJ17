@@ -9,9 +9,9 @@ private:
     const int numFrames = 4;
     const std::string spriteFile = "./Resources/spreadsheet.png";
     //POSICIO PLAYER 1
-    float posX1 = 0, posY1 = 0;
+    float posX1 = 0, posY1 = 250;
     //POSICIO PLAYER 2
-    float posX2 = 300, posY2 = 0;
+    float posX2 = 500, posY2 = 250;
     //END CONFIG
 
     int magicNumber;

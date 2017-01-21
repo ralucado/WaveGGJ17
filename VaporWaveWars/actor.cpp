@@ -2,6 +2,7 @@
 Actor::Actor() {}
 
 Actor::Actor(int num) {
+    animate = true;
     this->character = new Character(num);
 }
 
@@ -16,4 +17,13 @@ bool Actor::update(float deltaTime, sf::RenderWindow *window) {
         animate = false;
     }
     return this->updateLogic(deltaTime, window);
+}
+
+void Actor::hitBy(Compas enemy) const {
+    if (enemy == compas) std::cout << "dodge" << std::endl;
+    else std::cout << "hit" << std::endl;
+}
+
+Compas Actor::getAttack() const {
+    return compas;
 }
