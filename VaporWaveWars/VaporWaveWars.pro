@@ -17,7 +17,8 @@ SOURCES += main.cpp \
     iaenemy.cpp \
     actor.cpp \
     soundmanager.cpp \
-    score.cpp
+    score.cpp \
+    wave.cpp
 
 HEADERS += \
     game.hpp \
@@ -33,4 +34,5 @@ HEADERS += \
     iaenemy.hpp \
     actor.hpp \
     soundmanager.hpp \
-    score.hpp
+    score.hpp \
+    wave.hpp
