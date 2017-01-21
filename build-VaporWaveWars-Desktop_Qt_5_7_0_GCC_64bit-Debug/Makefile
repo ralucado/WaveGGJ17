@@ -203,7 +203,6 @@ DIST          = ../../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/spec_post.prf \
-		../VaporWaveWars/.qmake.stash \
 		../../../Qt/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/default_pre.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/resolve_config.prf \
@@ -380,7 +379,6 @@ Makefile: ../VaporWaveWars/VaporWaveWars.pro ../../../Qt/5.7/gcc_64/mkspecs/linu
 		../../../Qt/5.7/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		../../../Qt/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/default_pre.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/features/resolve_config.prf \
@@ -525,7 +523,6 @@ Makefile: ../VaporWaveWars/VaporWaveWars.pro ../../../Qt/5.7/gcc_64/mkspecs/linu
 ../../../Qt/5.7/gcc_64/mkspecs/features/qt_config.prf:
 ../../../Qt/5.7/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../Qt/5.7/gcc_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 ../../../Qt/5.7/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../Qt/5.7/gcc_64/mkspecs/features/default_pre.prf:
 ../../../Qt/5.7/gcc_64/mkspecs/features/resolve_config.prf:
@@ -591,6 +588,7 @@ main.o: ../VaporWaveWars/main.cpp ../VaporWaveWars/mygame.hpp \
 		../VaporWaveWars/compas.hpp \
 		../VaporWaveWars/player.hpp \
 		../VaporWaveWars/actor.hpp \
+		../VaporWaveWars/character.hpp \
 		../VaporWaveWars/iaenemy.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../VaporWaveWars/main.cpp
 
@@ -608,6 +606,7 @@ mygame.o: ../VaporWaveWars/mygame.cpp ../VaporWaveWars/mygame.hpp \
 		../VaporWaveWars/compas.hpp \
 		../VaporWaveWars/player.hpp \
 		../VaporWaveWars/actor.hpp \
+		../VaporWaveWars/character.hpp \
 		../VaporWaveWars/iaenemy.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mygame.o ../VaporWaveWars/mygame.cpp
 
@@ -638,6 +637,7 @@ menu.o: ../VaporWaveWars/menu.cpp ../VaporWaveWars/menu.hpp \
 		../VaporWaveWars/compas.hpp \
 		../VaporWaveWars/player.hpp \
 		../VaporWaveWars/actor.hpp \
+		../VaporWaveWars/character.hpp \
 		../VaporWaveWars/iaenemy.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o menu.o ../VaporWaveWars/menu.cpp
 
@@ -648,22 +648,28 @@ combat.o: ../VaporWaveWars/combat.cpp ../VaporWaveWars/combat.hpp \
 		../VaporWaveWars/game.hpp \
 		../VaporWaveWars/player.hpp \
 		../VaporWaveWars/actor.hpp \
+		../VaporWaveWars/character.hpp \
 		../VaporWaveWars/iaenemy.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o combat.o ../VaporWaveWars/combat.cpp
 
 player.o: ../VaporWaveWars/player.cpp ../VaporWaveWars/player.hpp \
 		../VaporWaveWars/commons.hpp \
 		../VaporWaveWars/compas.hpp \
-		../VaporWaveWars/actor.hpp
+		../VaporWaveWars/actor.hpp \
+		../VaporWaveWars/character.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o player.o ../VaporWaveWars/player.cpp
 
 iaenemy.o: ../VaporWaveWars/iaenemy.cpp ../VaporWaveWars/iaenemy.hpp \
 		../VaporWaveWars/actor.hpp \
-		../VaporWaveWars/commons.hpp
+		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/character.hpp \
+		../VaporWaveWars/compas.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o iaenemy.o ../VaporWaveWars/iaenemy.cpp
 
 actor.o: ../VaporWaveWars/actor.cpp ../VaporWaveWars/actor.hpp \
-		../VaporWaveWars/commons.hpp
+		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/character.hpp \
+		../VaporWaveWars/compas.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o actor.o ../VaporWaveWars/actor.cpp
 
 ####### Install
