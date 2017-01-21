@@ -7,6 +7,7 @@ class Actor
 {
 public:
     Actor();
+    Actor(int num);
     bool update(float deltaTime, sf::RenderWindow *window);
     void draw(sf::RenderWindow *window) ;
     virtual bool event(sf::Event e) = 0;
@@ -14,7 +15,7 @@ protected:
     bool animate;
     virtual bool updateLogic(float deltaTime, sf::RenderWindow *window) = 0;
 private:
-    Character character;
+    Character *character;
 };
 
 #endif // ENEMY_H

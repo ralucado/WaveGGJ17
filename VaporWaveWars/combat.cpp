@@ -2,15 +2,17 @@
 
 Combat::Combat() {
     ia = playerOneTurn = true;
-    enemy = new IaEnemy();
+    player = new Player(0);
+    enemy = new IaEnemy(1);
     initShader();
 }
 
 Combat::Combat(bool ia) {
     this->ia = ia;
+    player = new Player(0);
     playerOneTurn = true;
-    if (ia) enemy = new IaEnemy();
-    else enemy = new Player();
+    if (ia) enemy = new IaEnemy(1);
+    else enemy = new Player(1);
 }
 
 void Combat::initShader() {
@@ -22,19 +24,19 @@ void Combat::initShader() {
 }
 
 void Combat::update(float deltaTime, sf::RenderWindow *window) {
-    if (playerOneTurn) player.update(deltaTime, window);
-    else if (ia) playerOneTurn = enemy->update(deltaTime, window);
+    player->update(deltaTime, window);
+    enemy->update(deltaTime, window);
     time += deltaTime;
     _shader.setParameter("time", time);
 }
 
 void Combat::draw(sf::RenderWindow *window) {
-    player.draw(window);
+    player->draw(window);
     enemy->draw(window);
     window->draw(_background, &_shader);
 }
 
 void Combat::updateEvents(sf::Event e) {
-    if (playerOneTurn) playerOneTurn = player.event(e);
+    if (playerOneTurn) playerOneTurn = player->event(e);
     else if (!ia) playerOneTurn = !enemy->event(e);
 }

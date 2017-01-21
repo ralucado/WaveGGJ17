@@ -21,7 +21,7 @@ public:
     void updateEvents(sf::Event e) final override;
 private:
     bool playerOneTurn, ia;
-    Player player;
+    Actor *player;
     Actor *enemy;
     float time;
     sf::Texture _text;
