@@ -8,9 +8,9 @@ private:
     const double frameTime = BLACKVALUE/4.0f;
     const std::string spriteFile = WORK_DIR+"Resources/spreadsheet.png";
     //POSICIO PLAYER 1
-    float posX1 = W_WIDTH*0.05f, posY1 = W_HEIGHT*0.5f;
+    float posX1 = W_WIDTH*0.05f, posY1 = W_HEIGHT*0.5f - 15;
     //POSICIO PLAYER 2
-    float posX2 = W_WIDTH*0.65f, posY2 = W_HEIGHT*0.5f;
+    float posX2 = W_WIDTH*0.65f, posY2 = W_HEIGHT*0.5f - 15;
     //END CONFIG
 
     int magicNumber;

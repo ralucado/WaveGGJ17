@@ -23,7 +23,7 @@ class Combat : public Scene {
         void draw(sf::RenderWindow *window) final override;
         void updateEvents(sf::Event e) final override;
     private:
-        bool playerOneTurn, ia, attacking;
+        bool playerOneTurn, ia, attacking, toEnemy;
         Actor *player, *enemy;
         float time;
 
@@ -36,6 +36,7 @@ class Combat : public Scene {
         void initShader();
         void enemyManager(bool aux);
         void doMahWaves(bool p);
+        void animationTo(bool toEnemy, float deltaTime);
 };
 
 #endif // COMBAT_H
