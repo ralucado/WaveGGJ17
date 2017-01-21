@@ -15,7 +15,6 @@ private:
     bool direction; //TRUE => CAP A LA DRETA
 
     sf::Texture texture;
-    float timestamp;
 
 public:
     Wave();

@@ -61,7 +61,8 @@ SOURCES       = ../VaporWaveWars/main.cpp \
 		../VaporWaveWars/iaenemy.cpp \
 		../VaporWaveWars/actor.cpp \
 		../VaporWaveWars/soundmanager.cpp \
-		../VaporWaveWars/score.cpp 
+		../VaporWaveWars/score.cpp \
+		../VaporWaveWars/wave.cpp 
 OBJECTS       = main.o \
 		game.o \
 		mygame.o \
@@ -75,7 +76,8 @@ OBJECTS       = main.o \
 		iaenemy.o \
 		actor.o \
 		soundmanager.o \
-		score.o
+		score.o \
+		wave.o
 DIST          = ../../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/common/unix.conf \
 		../../../Qt/5.7/gcc_64/mkspecs/common/linux.conf \
@@ -232,7 +234,8 @@ DIST          = ../../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		iaenemy.hpp \
 		actor.hpp \
 		soundmanager.hpp \
-		score.hpp ../VaporWaveWars/main.cpp \
+		score.hpp \
+		wave.hpp ../VaporWaveWars/main.cpp \
 		../VaporWaveWars/game.cpp \
 		../VaporWaveWars/mygame.cpp \
 		../VaporWaveWars/button.cpp \
@@ -245,7 +248,8 @@ DIST          = ../../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../VaporWaveWars/iaenemy.cpp \
 		../VaporWaveWars/actor.cpp \
 		../VaporWaveWars/soundmanager.cpp \
-		../VaporWaveWars/score.cpp
+		../VaporWaveWars/score.cpp \
+		../VaporWaveWars/wave.cpp
 QMAKE_TARGET  = VaporWaveWars
 DESTDIR       = 
 TARGET        = VaporWaveWars
@@ -707,6 +711,11 @@ score.o: ../VaporWaveWars/score.cpp ../VaporWaveWars/score.hpp \
 		../VaporWaveWars/commons.hpp \
 		../VaporWaveWars/soundmanager.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o score.o ../VaporWaveWars/score.cpp
+
+wave.o: ../VaporWaveWars/wave.cpp ../VaporWaveWars/wave.hpp \
+		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/soundmanager.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o wave.o ../VaporWaveWars/wave.cpp
 
 ####### Install
 
