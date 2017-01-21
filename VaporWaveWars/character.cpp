@@ -5,8 +5,11 @@ Character::Character(){
     ASSERT(texture.loadFromFile(spriteFile));
     height = texture.getSize().y;
     width = texture.getSize().x;
-    next = 0;
+    next = timestamp = indexX = indexY = 0;
     setTexture(texture);
+    sf::IntRect rect = sf::IntRect(indexX*width, indexY*height, width, height);
+    setTextureRect(rect);
+    actualState = previousState = PlayerState::idle;
 }
 
 void Character::update(float deltaTime){
@@ -26,15 +29,24 @@ void Character::update(float deltaTime){
         }
         else {
             indexX = 0;
-            if (actualState == PlayerState::idle)
+            if (actualState == PlayerState::idle){
+                indexY = 1;
                 actualState = PlayerState::attacking;
+            }
 
-            else if (actualState == PlayerState::attacking)
+            else if (actualState == PlayerState::attacking){
+                indexY = 0;
                 actualState = PlayerState::idle;
+            }
         }
 
         sf::IntRect rect = sf::IntRect(indexX*width, indexY*height, width, height);
         setTextureRect(rect);
     }
+}
+
+void Character::setState(PlayerState::playerState state){
+    previousState = actualState;
+    actualState = state;
 }
 
