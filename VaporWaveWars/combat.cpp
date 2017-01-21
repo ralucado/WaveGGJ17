@@ -1,10 +1,12 @@
 #include "combat.hpp"
 
 Combat::Combat() {
+//    ia = false;
     ia = true;
     attacking = playerOneTurn = true;
     player = new Player(0);
     enemy = new IaEnemy(1);
+//    enemy = new Player(1);
     initShader();
 }
 
@@ -34,9 +36,9 @@ void Combat::update(float deltaTime, sf::RenderWindow *window) {
 }
 
 void Combat::draw(sf::RenderWindow *window) {
+    window->draw(_background, &_shader);
     player->draw(window);
     enemy->draw(window);
-    window->draw(_background, &_shader);
 }
 
 void Combat::updateEvents(sf::Event e) {
