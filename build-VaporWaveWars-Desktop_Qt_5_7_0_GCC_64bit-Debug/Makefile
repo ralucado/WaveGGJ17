@@ -60,7 +60,9 @@ SOURCES       = ../VaporWaveWars/main.cpp \
 		../VaporWaveWars/player.cpp \
 		../VaporWaveWars/iaenemy.cpp \
 		../VaporWaveWars/actor.cpp \
-		../VaporWaveWars/soundmanager.cpp 
+		../VaporWaveWars/soundmanager.cpp \
+		../VaporWaveWars/score.cpp \
+		../VaporWaveWars/wave.cpp 
 OBJECTS       = main.o \
 		game.o \
 		mygame.o \
@@ -73,7 +75,9 @@ OBJECTS       = main.o \
 		player.o \
 		iaenemy.o \
 		actor.o \
-		soundmanager.o
+		soundmanager.o \
+		score.o \
+		wave.o
 DIST          = ../../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.7/gcc_64/mkspecs/common/unix.conf \
 		../../../Qt/5.7/gcc_64/mkspecs/common/linux.conf \
@@ -229,7 +233,9 @@ DIST          = ../../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		player.hpp \
 		iaenemy.hpp \
 		actor.hpp \
-		soundmanager.hpp ../VaporWaveWars/main.cpp \
+		soundmanager.hpp \
+		score.hpp \
+		wave.hpp ../VaporWaveWars/main.cpp \
 		../VaporWaveWars/game.cpp \
 		../VaporWaveWars/mygame.cpp \
 		../VaporWaveWars/button.cpp \
@@ -241,7 +247,9 @@ DIST          = ../../../Qt/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../VaporWaveWars/player.cpp \
 		../VaporWaveWars/iaenemy.cpp \
 		../VaporWaveWars/actor.cpp \
-		../VaporWaveWars/soundmanager.cpp
+		../VaporWaveWars/soundmanager.cpp \
+		../VaporWaveWars/score.cpp \
+		../VaporWaveWars/wave.cpp
 QMAKE_TARGET  = VaporWaveWars
 DESTDIR       = 
 TARGET        = VaporWaveWars
@@ -588,6 +596,7 @@ compiler_clean:
 main.o: ../VaporWaveWars/main.cpp ../VaporWaveWars/mygame.hpp \
 		../VaporWaveWars/game.hpp \
 		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/soundmanager.hpp \
 		../VaporWaveWars/menu.hpp \
 		../VaporWaveWars/scene.hpp \
 		../VaporWaveWars/button.hpp \
@@ -597,16 +606,18 @@ main.o: ../VaporWaveWars/main.cpp ../VaporWaveWars/mygame.hpp \
 		../VaporWaveWars/actor.hpp \
 		../VaporWaveWars/character.hpp \
 		../VaporWaveWars/iaenemy.hpp \
-		../VaporWaveWars/soundmanager.hpp
+		../VaporWaveWars/score.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../VaporWaveWars/main.cpp
 
 game.o: ../VaporWaveWars/game.cpp ../VaporWaveWars/game.hpp \
-		../VaporWaveWars/commons.hpp
+		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/soundmanager.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o game.o ../VaporWaveWars/game.cpp
 
 mygame.o: ../VaporWaveWars/mygame.cpp ../VaporWaveWars/mygame.hpp \
 		../VaporWaveWars/game.hpp \
 		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/soundmanager.hpp \
 		../VaporWaveWars/menu.hpp \
 		../VaporWaveWars/scene.hpp \
 		../VaporWaveWars/button.hpp \
@@ -616,28 +627,33 @@ mygame.o: ../VaporWaveWars/mygame.cpp ../VaporWaveWars/mygame.hpp \
 		../VaporWaveWars/actor.hpp \
 		../VaporWaveWars/character.hpp \
 		../VaporWaveWars/iaenemy.hpp \
-		../VaporWaveWars/soundmanager.hpp
+		../VaporWaveWars/score.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mygame.o ../VaporWaveWars/mygame.cpp
 
 button.o: ../VaporWaveWars/button.cpp ../VaporWaveWars/button.hpp \
-		../VaporWaveWars/commons.hpp
+		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/soundmanager.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o button.o ../VaporWaveWars/button.cpp
 
 character.o: ../VaporWaveWars/character.cpp ../VaporWaveWars/character.hpp \
-		../VaporWaveWars/commons.hpp
+		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/soundmanager.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o character.o ../VaporWaveWars/character.cpp
 
 compas.o: ../VaporWaveWars/compas.cpp ../VaporWaveWars/compas.hpp \
-		../VaporWaveWars/commons.hpp
+		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/soundmanager.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o compas.o ../VaporWaveWars/compas.cpp
 
 scene.o: ../VaporWaveWars/scene.cpp ../VaporWaveWars/scene.hpp \
 		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/soundmanager.hpp \
 		../VaporWaveWars/game.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o scene.o ../VaporWaveWars/scene.cpp
 
 menu.o: ../VaporWaveWars/menu.cpp ../VaporWaveWars/menu.hpp \
 		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/soundmanager.hpp \
 		../VaporWaveWars/scene.hpp \
 		../VaporWaveWars/game.hpp \
 		../VaporWaveWars/button.hpp \
@@ -648,11 +664,12 @@ menu.o: ../VaporWaveWars/menu.cpp ../VaporWaveWars/menu.hpp \
 		../VaporWaveWars/actor.hpp \
 		../VaporWaveWars/character.hpp \
 		../VaporWaveWars/iaenemy.hpp \
-		../VaporWaveWars/soundmanager.hpp
+		../VaporWaveWars/score.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o menu.o ../VaporWaveWars/menu.cpp
 
 combat.o: ../VaporWaveWars/combat.cpp ../VaporWaveWars/combat.hpp \
 		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/soundmanager.hpp \
 		../VaporWaveWars/compas.hpp \
 		../VaporWaveWars/scene.hpp \
 		../VaporWaveWars/game.hpp \
@@ -660,11 +677,12 @@ combat.o: ../VaporWaveWars/combat.cpp ../VaporWaveWars/combat.hpp \
 		../VaporWaveWars/actor.hpp \
 		../VaporWaveWars/character.hpp \
 		../VaporWaveWars/iaenemy.hpp \
-		../VaporWaveWars/soundmanager.hpp
+		../VaporWaveWars/score.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o combat.o ../VaporWaveWars/combat.cpp
 
 player.o: ../VaporWaveWars/player.cpp ../VaporWaveWars/player.hpp \
 		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/soundmanager.hpp \
 		../VaporWaveWars/compas.hpp \
 		../VaporWaveWars/actor.hpp \
 		../VaporWaveWars/character.hpp
@@ -673,12 +691,14 @@ player.o: ../VaporWaveWars/player.cpp ../VaporWaveWars/player.hpp \
 iaenemy.o: ../VaporWaveWars/iaenemy.cpp ../VaporWaveWars/iaenemy.hpp \
 		../VaporWaveWars/actor.hpp \
 		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/soundmanager.hpp \
 		../VaporWaveWars/character.hpp \
 		../VaporWaveWars/compas.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o iaenemy.o ../VaporWaveWars/iaenemy.cpp
 
 actor.o: ../VaporWaveWars/actor.cpp ../VaporWaveWars/actor.hpp \
 		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/soundmanager.hpp \
 		../VaporWaveWars/character.hpp \
 		../VaporWaveWars/compas.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o actor.o ../VaporWaveWars/actor.cpp
@@ -686,6 +706,16 @@ actor.o: ../VaporWaveWars/actor.cpp ../VaporWaveWars/actor.hpp \
 soundmanager.o: ../VaporWaveWars/soundmanager.cpp ../VaporWaveWars/soundmanager.hpp \
 		../VaporWaveWars/commons.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o soundmanager.o ../VaporWaveWars/soundmanager.cpp
+
+score.o: ../VaporWaveWars/score.cpp ../VaporWaveWars/score.hpp \
+		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/soundmanager.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o score.o ../VaporWaveWars/score.cpp
+
+wave.o: ../VaporWaveWars/wave.cpp ../VaporWaveWars/wave.hpp \
+		../VaporWaveWars/commons.hpp \
+		../VaporWaveWars/soundmanager.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o wave.o ../VaporWaveWars/wave.cpp
 
 ####### Install
 

@@ -2,12 +2,15 @@
 #include "mygame.hpp"
 
 Menu::Menu() {
-    _start.setPosition(5,5);
-    _exit.setPosition(100,100);
+    _start.setPosition(512-160,200);
+    _exit.setPosition(512-160,400);
     _start.turnOn();
     _exit.turnOn();
     _buttons.push_back(&_start);
     _buttons.push_back(&_exit);
+    ASSERT(textureBackground.loadFromFile(WORK_DIR+"Resources/background.png"));
+    background.setTexture(textureBackground);
+    background.setPosition(0,0);
 
 }
 
@@ -21,6 +24,7 @@ void Menu::update(float deltaTime, sf::RenderWindow*window){
 }
 
 void Menu::draw(sf::RenderWindow* window){
+    window->draw(background);
     for(unsigned int i = 0; i < _buttons.size(); ++i){
         window->draw(*_buttons[i]);
     }

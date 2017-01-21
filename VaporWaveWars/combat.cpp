@@ -38,7 +38,7 @@ void Combat::initShader() {
 void Combat::update(float deltaTime, sf::RenderWindow *window) {
     player->update(deltaTime, window);
     bool aux = enemy->update(deltaTime, window);
-    if (ia) enemyManager(aux); //end of player two ia ritm
+    if (ia) enemyManager(aux); //end of player two ia rythm
     time += deltaTime;
 
     _shader.setParameter("time", time);
@@ -57,6 +57,7 @@ void Combat::updateEvents(sf::Event e) {
     if (playerOneTurn) {
         bool aux = player->event(e, !attacking);
         if (!aux) { //end of player one ritm
+
             if (!attacking) {
                 if(!player->hitBy(enemy->getAttack())) {
                     scoreEnemy->incrisScore();

@@ -17,6 +17,8 @@ class Menu : public Scene{
         Button _start = Button(WORK_DIR+"Resources/play-spreadsheet.png");
         Button _exit = Button(WORK_DIR+"Resources/exit-spreadsheet.png");
         std::vector<Button*> _buttons;
+        sf::Texture textureBackground;
+        sf::Sprite background;
 };
 
 #endif // MENU_HPP
