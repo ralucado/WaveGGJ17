@@ -25,7 +25,7 @@ int Button::getClicks(){
     int c = _clicks;
     //cout << "popping clicks " << c << endl;
     _clicks = 0;
-    if (_clicks > 0) std::cout << "popclicks = " << _clicks << std::endl;
+    //if (_clicks > 0) std::cout << "popclicks = " << _clicks << std::endl;
     return c;
 }
 
@@ -51,14 +51,14 @@ void Button::handleMouseEvent(sf::Event& event){
         switch (event.type){
             case (sf::Event::MouseButtonPressed):
                 if(_state == ButtonState::active) _state = ButtonState::pressed;
-                std::cout << "pressed!" << _clicks << std::endl;
+                //std::cout << "pressed!" << _clicks << std::endl;
             break;
 
             case (sf::Event::MouseButtonReleased):
                 if(_state == ButtonState::pressed){
                     _state = ButtonState::active;
                     ++_clicks;
-                    std::cout << "released!" << _clicks << std::endl;
+                    //std::cout << "released!" << _clicks << std::endl;
                 }
             break;
 
