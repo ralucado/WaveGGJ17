@@ -33,6 +33,7 @@ void Combat::update(float deltaTime, sf::RenderWindow *window) {
     bool aux = enemy->update(deltaTime, window);
     if (ia) enemyManager(aux); //end of player two ia ritm
     time += deltaTime;
+
     _shader.setParameter("time", time);
 }
 

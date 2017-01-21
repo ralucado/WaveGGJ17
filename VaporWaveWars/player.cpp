@@ -30,6 +30,8 @@ bool Player::event(sf::Event e) {
             else {
                 compas.end();
                 error = true; //weird?
+                if (animate != PlayerState::inMidle) animate = PlayerState::hurt;
+
             }
         }
         break;
