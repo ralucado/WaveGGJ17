@@ -17,7 +17,7 @@ public:
     Combat& operator=(Combat&& m) = delete;
     void update(float deltaTime, sf::RenderWindow *window) final override;
     void draw(sf::RenderWindow *window) final override;
-    void updateButtons(sf::Event e) final override;
+    void updateEvents(sf::Event e) final override;
 private:
     Compas compas;
     bool playerOneTurn, ia;

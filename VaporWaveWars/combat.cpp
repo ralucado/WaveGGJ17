@@ -14,10 +14,10 @@ void Combat::update(float deltaTime, sf::RenderWindow *window) {
 void Combat::draw(sf::RenderWindow *window) {
     player.draw(window);
     enemy->draw(window);
-    //draw background
+
 }
 
-void Combat::updateButtons(sf::Event e) {
+void Combat::updateEvents(sf::Event e) {
     if (playerOneTurn) playerOneTurn = player.event(e);
     else if (!ia) playerOneTurn = !enemy->event(e);
 }
