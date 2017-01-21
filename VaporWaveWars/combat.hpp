@@ -9,10 +9,11 @@
 #include "actor.hpp"
 #include "soundmanager.hpp"
 #include "score.hpp"
-
+#include "wave.hpp"
 class Combat : public Scene {
 public:
     Combat();
+    ~Combat();
     Combat(bool ia);
     Combat(const Combat& m) = delete;
     Combat(const Combat&& m) = delete;
@@ -29,10 +30,11 @@ private:
     sf::Texture _text;
     sf::Sprite _background;
     sf::Shader _shader;
-
+    std::vector<Wave*> waves;
     Score *scoreEnemy, *scorePlayer;
     void initShader();
     void enemyManager(bool aux);
+    void doMahWaves(bool p);
 };
 
 #endif // COMBAT_H

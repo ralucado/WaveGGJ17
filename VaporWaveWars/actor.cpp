@@ -43,3 +43,4 @@ bool Actor::hitBy(Compas enemy) {
 Compas Actor::getAttack() const {
     return compas;
 }
+

@@ -8,6 +8,7 @@
 #include <stdlib.h>     /* getenv */
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <iterator>     // std::iterator, std::input_iterator_tag
 #include <iostream>
 #include <string>
 #include "soundmanager.hpp"

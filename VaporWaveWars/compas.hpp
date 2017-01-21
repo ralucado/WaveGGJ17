@@ -22,6 +22,7 @@ public:
     void incraeseTime();
     bool isPressed() const;
     bool operator ==(const Compas& d) const;
+    const std::vector<int> &getNotes() const;
 };
 
 #endif // COMPAS_HPP

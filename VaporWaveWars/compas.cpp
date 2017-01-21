@@ -40,6 +40,12 @@ bool Compas::isPressed() const {
     return isPress;
 }
 
+const std::vector<int>& Compas::getNotes() const
+{
+    return notes;
+}
+
+
 int Compas::get (int i) const {
     return notes[i];
 }
