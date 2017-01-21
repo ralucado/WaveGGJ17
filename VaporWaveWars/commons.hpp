@@ -41,7 +41,7 @@ namespace GameScene {
 }
 
 namespace PlayerState {
-    enum playerState{idle, attacking};
+    enum playerState{idle, attacking, inMidle};
 }
 
 #endif // COMMONS_HPP
