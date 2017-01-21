@@ -12,12 +12,12 @@ Score::Score() {
 
 Score::Score(int num) : Score() {
     if (num == 0) {
-        _posX = 100;
-        _posY = 50;
+        _posX = W_WIDTH*0.15f;
+        _posY = W_HEIGHT*0.05f;
     }
     else {
-        _posX = 600;
-        _posY = 50;
+        _posX = W_WIDTH*0.75f;
+        _posY = W_HEIGHT*0.05f;
     }
     _scoreSprite[0].setPosition(_posX, _posY);
 }
