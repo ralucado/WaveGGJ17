@@ -8,7 +8,6 @@ Combat::Combat() {
 //    enemy = new IaEnemy(1);
     enemy = new Player(1);
     initShader();
-    SoundManager::load();
     SoundManager::playMusic("music");
 }
 

@@ -53,6 +53,9 @@ void Character::setState(PlayerState::playerState state){
         idleFrame = indexX;
         indexX = 0;
         indexY = 1 + magicNumber;
+        std::string sample = "atk"+std::to_string(rand()%20+1);
+        SoundManager::playSound(sample);
+        std::cout << "playing sample " << sample << std::endl;
     }
     else if (false /*state == PlayerState::damaged*/){
         indexX = 0;

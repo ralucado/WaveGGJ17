@@ -9,6 +9,7 @@ MyGame::MyGame() {
     _scenes[GameScene::help] = _menu;
     _scenes[GameScene::credits] = _menu;
     std::cout << "in menu" << std::endl;
+    SoundManager::load();
 }
 
 MyGame::~MyGame() {
