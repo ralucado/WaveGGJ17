@@ -30,17 +30,23 @@ void Combat::initShader() {
     _background.setTexture(_text);
     _shader.loadFromFile(WORK_DIR+"Resources/shader.frag", sf::Shader::Fragment);
     _shader.setParameter("resolution", sf::Vector2f(W_WIDTH, W_HEIGHT));
+    _shader.setParameter("time", time);
 
-    _shaderHalo.loadFromFile(WORK_DIR+"Resources/shaderHalo.frag", sf::Shader::Fragment);
-    _shaderHalo.setParameter("blue", false);
+     ASSERT(_haloT.loadFromFile(WORK_DIR+"Resources/platform-halo.png"));
+     _halo.setTexture(_haloT);
+     _halo.setPosition(W_WIDTH*0.05f, W_HEIGHT*0.5f);
+    _shaderHalo.loadFromFile(WORK_DIR+"Resources/halo.frag", sf::Shader::Fragment);
+    _shaderHalo.setParameter("blue", attacking);
+    _shaderHalo.setParameter("time", time);
+
 }
 
 void Combat::update(float deltaTime, sf::RenderWindow *window) {
     player->update(deltaTime, window);
     bool aux = enemy->update(deltaTime, window);
     if (ia) enemyManager(aux); //end of player two ia rythm
-    time += deltaTime;
 
+    time += deltaTime;
     _shader.setParameter("time", time);
     _shaderHalo.setParameter("time", time);
 }
@@ -49,12 +55,14 @@ void Combat::draw(sf::RenderWindow *window) {
     window->draw(_background, &_shader);
     player->draw(window);
     enemy->draw(window);
+    window->draw(_halo, &_shaderHalo);
     scorePlayer->draw(window);
     scoreEnemy->draw(window);
 }
 
 void Combat::updateEvents(sf::Event e) {
     if (playerOneTurn) {
+        _halo.setPosition(W_WIDTH*0.05f, W_HEIGHT*0.5f);
         bool aux = player->event(e, !attacking);
         if (!aux) { //end of player one ritm
 
@@ -65,9 +73,11 @@ void Combat::updateEvents(sf::Event e) {
             }
             else playerOneTurn = aux;
             attacking = !attacking;
+            _shaderHalo.setParameter("blue", attacking);
         }
     }
     else if (!ia) {
+        _halo.setPosition(W_WIDTH*0.65f, W_HEIGHT*0.5f);
         bool aux = !enemy->event(e, !attacking);
         enemyManager(aux); //end of player two not ia ritm
     }
@@ -82,5 +92,6 @@ void Combat::enemyManager(bool aux) {
         }
         else playerOneTurn = aux;
         attacking = !attacking;
+        _shaderHalo.setParameter("blue", attacking);
     }
 }

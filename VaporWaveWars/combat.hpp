@@ -23,14 +23,12 @@ public:
     void updateEvents(sf::Event e) final override;
 private:
     bool playerOneTurn, ia, attacking;
-    Actor *player;
-    Actor *enemy;
+    Actor *player, *enemy;
     float time;
-    sf::Texture _text;
-    sf::Sprite _background;
-    sf::Shader _shader;
 
-    sf::Shader _shaderHalo;
+    sf::Texture _text, _haloT, _plataformT;
+    sf::Sprite _background, _halo, _plataform;
+    sf::Shader _shader, _shaderHalo;
 
     Score *scoreEnemy, *scorePlayer;
     void initShader();
