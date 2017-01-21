@@ -39,5 +39,5 @@ void main(void) {
     
     vec4 color = vec4(255, 120, 153, 255) / 255.;
     vec4 colorB = vec4(255,255,255,255)/ 255.;
-    gl_FragColor = (grid(fract(uv))) * color;
+    gl_FragColor = (grid(fract(uv))) * color - line(umuv.y, 0., 0.175, 0.025) * color * 2.;
 }
