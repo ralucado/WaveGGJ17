@@ -4,12 +4,13 @@
 
 class Character : public sf::Sprite{
 private:
-    //CONSTS
+    //CONFIG
     const double frameTime = 0.2;
     const int numFrames = 4;
-    const std::string spriteFile = "";
-    //CONSTS
+    const std::string spriteFile = "./Resources/spreadsheet.png";
+    //END CONFIG
 
+    sf::Texture texture;
     int indexX, indexY, width, height;
     int posX, posY;
     PlayerState::playerState actualState, previousState;
