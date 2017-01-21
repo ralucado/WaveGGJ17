@@ -19,14 +19,15 @@ private:
     sf::Texture texture;
     int indexX, indexY, width, height;
     int playerNum;
-    PlayerState::playerState actualState, previousState;
-    float timestamp, next;
+    PlayerState::playerState actualState;
+    float timestamp;
 
 public:
     Character();
     Character(int player);
     void update(float deltaTime);
     void setState(PlayerState::playerState state);
+    bool isLastFrame();
 
 };
 
