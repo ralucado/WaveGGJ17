@@ -128,11 +128,19 @@ void Combat::doMahWaves(bool p){
     }
     else notes = enemy->getAttack().getNotes();
 
+    int anterior = notes[0];
+    if(!p) anterior = 512+512*anterior;
+    else anterior = 512-512*anterior;
     for(int i = 0; i < notes.size(); ++i){
         std::cout << notes[i] << std::endl;
         Wave* w = new Wave(p);
-        if(!p) w->setPosition(512+512*notes[i],500);
-        else w->setPosition(512-512*notes[i],500);
+        //if(!p) w->setPosition(anterior,500);
+        //else w->setPosition(512-512*anterior,500);
+        w->setPosition(anterior,500);
+        if(i<notes.size()) {
+            if(!p) anterior += 256*notes[i+1];
+            else anterior -= 256*notes[i+1];
+        }
         waves.push_back(w);
     }
 }
