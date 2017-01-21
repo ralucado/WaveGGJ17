@@ -9,7 +9,9 @@ SOURCES += main.cpp \
     mygame.cpp \
     button.cpp \
     character.cpp \
-    compas.cpp
+    compas.cpp \
+    scene.cpp \
+    menu.cpp
 
 HEADERS += \
     game.hpp \
@@ -17,4 +19,6 @@ HEADERS += \
     commons.hpp \
     button.hpp \
     character.hpp \
-    compas.hpp
+    compas.hpp \
+    scene.hpp \
+    menu.hpp

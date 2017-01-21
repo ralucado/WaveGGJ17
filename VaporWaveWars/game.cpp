@@ -13,6 +13,10 @@ Game::~Game() {
     Game::instance = nullptr;
 }
 
+Game* Game::i() {
+    return Game::instance;
+}
+
 // Main game loop
 void Game::run() {
     sf::Clock c;

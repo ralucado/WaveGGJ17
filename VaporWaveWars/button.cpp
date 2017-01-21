@@ -25,11 +25,11 @@ int Button::getClicks(){
     int c = _clicks;
     //cout << "popping clicks " << c << endl;
     _clicks = 0;
-    //cout << "popclicks = " << _clicks << endl;
+    //if (_clicks > 0) std::cout << "popclicks = " << _clicks << std::endl;
     return c;
 }
 
-void Button::update(sf::Vector2i mousePosition){
+void Button::update(sf::Vector2f mousePosition){
     //cout << "state = " << _state << endl;
     if(_state != ButtonState::off){
         if(!inside(mousePosition)) _state = 0;
@@ -39,7 +39,7 @@ void Button::update(sf::Vector2i mousePosition){
     setTextureRect(sf::IntRect(0,_ySize*_state,_xSize,_ySize));
 }
 
-bool Button::inside(sf::Vector2i position){
+bool Button::inside(sf::Vector2f position){
     sf::FloatRect boundingBox = getGlobalBounds();
     if (boundingBox.contains(sf::Vector2f(position.x, position.y))) return true;
     //cout << "outside!" << endl;
@@ -51,13 +51,14 @@ void Button::handleMouseEvent(sf::Event& event){
         switch (event.type){
             case (sf::Event::MouseButtonPressed):
                 if(_state == ButtonState::active) _state = ButtonState::pressed;
+                //std::cout << "pressed!" << _clicks << std::endl;
             break;
 
             case (sf::Event::MouseButtonReleased):
                 if(_state == ButtonState::pressed){
                     _state = ButtonState::active;
                     ++_clicks;
-                    //cout << "Click!" << _clicks << endl;
+                    //std::cout << "released!" << _clicks << std::endl;
                 }
             break;
 

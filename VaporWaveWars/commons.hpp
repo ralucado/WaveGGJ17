@@ -8,8 +8,11 @@
 #include <iostream>
 #include <string>
 
+const int SCENE_NUM = 4;
+
 #define MARGEERR 0.30f
 #define BLACKVALUE 0.00025f
+
 #define ASSERT(expression) do \
 { \
     if(!(expression)) { \
@@ -28,8 +31,8 @@ namespace ButtonState {
     enum basicState {released, active, pressed, off};
 }
 
-namespace GameState {
-    enum gameState{menu,inGame,help,credits};
+namespace GameScene {
+    enum gameScene{menu,inGame,help,credits};
 }
 
 namespace PlayerState {
