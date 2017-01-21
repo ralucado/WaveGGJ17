@@ -27,7 +27,8 @@ void Character::update(float deltaTime){
     if (timestamp >= frameTime){
         timestamp = 0;
 
-        std::cout << "PLAYER" << playerNum << ": indexX: " << indexX << ", idleFrame: " << idleFrame << std::endl;
+        //std::cout << "PLAYER" << playerNum << ": indexX: " << indexX << ", idleFrame: " << idleFrame << std::endl;
+
         sf::IntRect rect = sf::IntRect(indexX*width, indexY*height, width, height);
         setTextureRect(rect);
 
