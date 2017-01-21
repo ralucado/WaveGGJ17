@@ -42,7 +42,7 @@ enum gameScene{menu,inGame,help,credits};
 }
 
 namespace PlayerState {
-enum playerState{idle, attacking, inMidle, hurt};
+enum playerState{idle, attacking, inMidle, hurt, success};
 }
 
 #endif // COMMONS_HPP
