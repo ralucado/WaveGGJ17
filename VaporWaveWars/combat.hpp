@@ -7,6 +7,7 @@
 #include "player.hpp"
 #include "iaenemy.hpp"
 #include "actor.hpp"
+#include "soundmanager.hpp"
 
 class Combat : public Scene {
 public:

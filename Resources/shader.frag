@@ -6,7 +6,7 @@ float rand(vec2 n) {
 }
 
 float line(float p, float x, float glow) {
-    if (abs(p - x) < 0.025) return 1; 
+    if (abs(p - x) < 0.025) return 1.; 
     return 1. - pow(abs(p - x), glow);
 }
 
