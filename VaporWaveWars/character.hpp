@@ -10,6 +10,7 @@ private:
     const std::string spriteFile = "";
     //CONSTS
 
+    sf::Texture texture;
     int indexX, indexY, width, height;
     int posX, posY;
     PlayerState::playerState actualState, previousState;

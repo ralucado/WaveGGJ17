@@ -1,7 +1,6 @@
 #include "character.hpp"
 
 Character::Character(){
-    sf::Texture texture;
     ASSERT(texture.loadFromFile(spriteFile));
     height = texture.getSize().y;
     width = texture.getSize().x;
@@ -16,28 +15,13 @@ void Character::update(float deltaTime){
     timestamp += deltaTime;
     if (timestamp >= frameTime){
         timestamp = 0;
-        if (actualState == previousState){
-            if (actualState == PlayerState::idle){
-                indexX = (indexX+1)%numFrames;
-            }
-            else if (actualState == PlayerState::attacking){
-                if (indexX == width){
-                    indexX = 0;
-                    actualState = PlayerState::idle;
-                }
-            }
+
+        if (actualState == PlayerState::attacking and indexX >= 3){
+            actualState = PlayerState::idle;
+            indexX = 0;
         }
         else {
-            indexX = 0;
-            if (actualState == PlayerState::idle){
-                indexY = 1;
-                actualState = PlayerState::attacking;
-            }
-
-            else if (actualState == PlayerState::attacking){
-                indexY = 0;
-                actualState = PlayerState::idle;
-            }
+            indexX = (indexX+1)%4;
         }
 
         sf::IntRect rect = sf::IntRect(indexX*width, indexY*height, width, height);
@@ -48,5 +32,13 @@ void Character::update(float deltaTime){
 void Character::setState(PlayerState::playerState state){
     previousState = actualState;
     actualState = state;
+    if (state == PlayerState::idle){
+        indexX = 0;
+        indexY = 0;
+    }
+    else{
+        indexX = 0;
+        indexY = 1;
+    }
 }
 
