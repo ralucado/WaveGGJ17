@@ -1,9 +1,9 @@
 #ifndef IAENEMY_H
 #define IAENEMY_H
 
-#include "enemy.hpp"
+#include "actor.hpp"
 
-class IaEnemy : public Enemy {
+class IaEnemy : public Actor {
 public:
     IaEnemy();
     bool update(float deltaTime, sf::RenderWindow *window) final override;

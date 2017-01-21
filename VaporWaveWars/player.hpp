@@ -3,8 +3,8 @@
 
 #include "commons.hpp"
 #include "compas.hpp"
-#include "enemy.hpp"
-class Player : public Enemy {
+#include "actor.hpp"
+class Player : public Actor {
 public:
     Player();
     bool update(float deltaTime, sf::RenderWindow *window) final override;

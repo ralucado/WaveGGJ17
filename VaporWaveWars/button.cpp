@@ -71,7 +71,7 @@ void Button::handleMouseEvent(sf::Event& event){
 void Button::initTexture(std::string path){
     _clicks = 0;
     _state = ButtonState::off;
-    if(!_texture.loadFromFile(path)) std::cout << "failed to load button texture!!" << std::endl;
+    ASSERT(_texture.loadFromFile(path));
     setTexture(_texture);
     _xSize = _texture.getSize().x;
     _ySize = _texture.getSize().y/4;

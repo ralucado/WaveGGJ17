@@ -3,7 +3,7 @@
 #include "game.hpp"
 
 #include "menu.hpp"
-
+#include "combat.hpp"
 class MyGame : public Game{
 public:
     MyGame();
@@ -14,6 +14,7 @@ private:
      GameScene::gameScene _scene;
       std::vector<Scene*> _scenes;
      Menu _menu;
+     Combat _combat;
     virtual void update(float deltaTime, sf::RenderWindow *window) final override;
     virtual void draw(sf::RenderWindow *window) final override;
 };

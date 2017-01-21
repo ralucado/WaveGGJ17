@@ -6,7 +6,7 @@
 #include "scene.hpp"
 #include "player.hpp"
 #include "iaenemy.hpp"
-#include "enemy.hpp"
+#include "actor.hpp"
 
 class Combat : public Scene {
 public:
@@ -20,10 +20,9 @@ public:
     void draw(sf::RenderWindow *window) final override;
     void updateEvents(sf::Event e) final override;
 private:
-    Compas compas;
     bool playerOneTurn, ia;
     Player player;
-    Enemy *enemy;
+    Actor *enemy;
 };
 
 #endif // COMBAT_H

@@ -14,8 +14,8 @@ SOURCES += main.cpp \
     menu.cpp \
     combat.cpp \
     player.cpp \
-    enemy.cpp \
-    iaenemy.cpp
+    iaenemy.cpp \
+    actor.cpp
 
 HEADERS += \
     game.hpp \
@@ -28,5 +28,5 @@ HEADERS += \
     menu.hpp \
     combat.hpp \
     player.hpp \
-    enemy.hpp \
-    iaenemy.hpp
+    iaenemy.hpp \
+    actor.hpp
