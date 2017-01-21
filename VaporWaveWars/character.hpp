@@ -4,9 +4,11 @@
 
 class Character : public sf::Sprite{
 private:
+    //CONSTS
     const double frameTime = 0.2;
     const int numFrames = 4;
     const std::string spriteFile = "";
+    //CONSTS
 
     int indexX, indexY, width, height;
     int posX, posY;
