@@ -12,6 +12,8 @@ const int SCENE_NUM = 4;
 
 #define MARGEERR 0.30f
 #define BLACKVALUE 0.00025f
+#define W_WIDTH  800
+#define W_HEIGHT 600
 
 #define ASSERT(expression) do \
 { \

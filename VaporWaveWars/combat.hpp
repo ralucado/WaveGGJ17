@@ -23,8 +23,11 @@ private:
     bool playerOneTurn, ia;
     Player player;
     Actor *enemy;
+    sf::Texture _text;
     sf::Sprite _background;
-    static sf::Shader _shader;
+    sf::Shader _shader;
+
+    void initShader();
 
 };
 
