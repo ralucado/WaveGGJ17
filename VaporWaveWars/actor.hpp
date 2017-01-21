@@ -12,7 +12,7 @@ public:
     Actor(int num);
     bool update(float deltaTime, sf::RenderWindow *window);
     void draw(sf::RenderWindow *window);
-    bool hitBy(Compas enemy) const;
+    bool hitBy(Compas enemy);
     Compas getAttack() const;
     virtual bool event(sf::Event e, bool def) = 0;
 
