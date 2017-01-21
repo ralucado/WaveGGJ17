@@ -17,7 +17,7 @@ public:
     virtual bool event(sf::Event e) = 0;
 protected:
     Compas compas;
-    bool animate;
+    PlayerState::playerState animate;
     virtual bool updateLogic(float deltaTime, sf::RenderWindow *window) = 0;
 private:
     Character *character;

@@ -18,8 +18,10 @@ bool Player::event(sf::Event e) {
     case (sf::Event::KeyPressed):
         if(e.key.code == sf::Keyboard::C) compas.start();
         if(e.key.code == sf::Keyboard::Space) {
-            compas.add();
-            if (compas.isPressed() && !animate) animate = true;
+            if (compas.isPressed() && animate == PlayerState::idle) {
+                compas.add();
+                animate = PlayerState::attacking;
+            }
         }
         break;
     case (sf::Event::KeyReleased):

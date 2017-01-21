@@ -2,7 +2,7 @@
 Actor::Actor() {}
 
 Actor::Actor(int num) {
-    animate = true;
+    animate = PlayerState::attacking;
     this->character = new Character(num);
 }
 
@@ -12,9 +12,12 @@ void Actor::draw(sf::RenderWindow *window) {
 
 bool Actor::update(float deltaTime, sf::RenderWindow *window) {
     character->update(deltaTime);
-    if (animate) {
+    if (animate == PlayerState::attacking) {
         character->setState(PlayerState::attacking);
-        animate = false;
+        animate = PlayerState::inMidle;
+    }
+    else if (animate == PlayerState::inMidle) {
+        if (character->isLastFrame()) animate = PlayerState::idle;
     }
     return this->updateLogic(deltaTime, window);
 }
