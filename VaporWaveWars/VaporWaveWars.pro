@@ -11,7 +11,11 @@ SOURCES += main.cpp \
     character.cpp \
     compas.cpp \
     scene.cpp \
-    menu.cpp
+    menu.cpp \
+    combat.cpp \
+    player.cpp \
+    iaenemy.cpp \
+    actor.cpp
 
 HEADERS += \
     game.hpp \
@@ -21,4 +25,8 @@ HEADERS += \
     character.hpp \
     compas.hpp \
     scene.hpp \
-    menu.hpp
+    menu.hpp \
+    combat.hpp \
+    player.hpp \
+    iaenemy.hpp \
+    actor.hpp

@@ -10,7 +10,7 @@ class Scene
         virtual ~Scene();
         virtual void update(float deltaTime, sf::RenderWindow *window) = 0;
         virtual void draw(sf::RenderWindow *window) = 0;
-        virtual void updateEvents(sf::Event) = 0;
+        virtual void updateEvents(sf::Event e) = 0;
     protected:
         Game* parent;
 };

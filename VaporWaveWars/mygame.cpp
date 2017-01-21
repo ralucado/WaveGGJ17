@@ -4,6 +4,9 @@ MyGame::MyGame() {
     _scene = GameScene::menu;
     _scenes = std::vector<Scene*>(SCENE_NUM);
     _scenes[GameScene::menu] = &_menu;
+    _scenes[GameScene::inGame] = &_combat;
+    _scenes[GameScene::help] = &_menu;
+    _scenes[GameScene::credits] = &_menu;
     std::cout << "in menu" << std::endl;
 }
 
@@ -11,7 +14,6 @@ MyGame::~MyGame() {
 }
 
 MyGame* i(){
-    return static_cast<MyGame*>(Game::i());
 }
 
 void MyGame::changeScene(GameScene::gameScene n){
@@ -20,7 +22,7 @@ void MyGame::changeScene(GameScene::gameScene n){
 
 // Main game loop
 void MyGame::update(float deltaTime, sf::RenderWindow*window) {
-//    std::cout << deltaTime << std::endl;
+    //    std::cout << deltaTime << std::endl;
     sf::Event event;
     while(window->pollEvent(event)){
         switch (event.type) {
@@ -36,7 +38,7 @@ void MyGame::update(float deltaTime, sf::RenderWindow*window) {
         case (sf::Event::MouseButtonPressed):
         case (sf::Event::MouseButtonReleased):
 
-             _scenes[_scene]->updateEvents(event);
+            _scenes[_scene]->updateEvents(event);
             switch(_scene){
             case(GameScene::menu):
                 //std::cout << "still in menu" << std::endl;
@@ -52,7 +54,7 @@ void MyGame::update(float deltaTime, sf::RenderWindow*window) {
     }
 
     // do shit
-     _scenes[_scene]->update(deltaTime,window);
+    _scenes[_scene]->update(deltaTime,window);
 }
 
 void MyGame::draw(sf::RenderWindow*window) {

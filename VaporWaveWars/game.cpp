@@ -26,6 +26,7 @@ void Game::run() {
         float time = c.getElapsedTime().asSeconds();
         float deltaTime = time-oldTime;
         oldTime = time;
+        //std::cout << deltaTime << std::endl;
         update(deltaTime, &window);
         draw( &window);
     }
