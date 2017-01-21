@@ -7,7 +7,11 @@ Combat::Combat() {
     player = new Player(0);
 //    enemy = new IaEnemy(1);
     enemy = new Player(1);
+    scorePlayer = new Score(0);
+    scoreEnemy = new Score(1);
     initShader();
+
+    SoundManager::load();
     SoundManager::playMusic("music");
 }
 
@@ -40,6 +44,8 @@ void Combat::draw(sf::RenderWindow *window) {
     window->draw(_background, &_shader);
     player->draw(window);
     enemy->draw(window);
+    window->draw(*scorePlayer);
+    window->draw(*scoreEnemy);
 }
 
 void Combat::updateEvents(sf::Event e) {
@@ -47,9 +53,10 @@ void Combat::updateEvents(sf::Event e) {
         bool aux = player->event(e);
         if (!aux) { //end of player one ritm
             if (!attacking) {
-                if(!player->hitBy(enemy->getAttack())) enemy->upScore();
-                std::cout << "player1: " << player->getScore() << std::endl;
-                std::cout << "player2: " << enemy->getScore() << std::endl;
+                if(!player->hitBy(enemy->getAttack())) {
+                    enemy->upScore();
+                    scoreEnemy->setScore(enemy->getScore());
+                }
             }
             else playerOneTurn = aux;
             attacking = !attacking;
@@ -64,9 +71,10 @@ void Combat::updateEvents(sf::Event e) {
 void Combat::enemyManager(bool aux) {
     if (aux) {
         if (!attacking) {
-            if(!enemy->hitBy(player->getAttack())) player->upScore();
-            std::cout << "player1: " << player->getScore() << std::endl;
-            std::cout << "player2: " << enemy->getScore() << std::endl;
+            if(!enemy->hitBy(player->getAttack())) {
+                player->upScore();
+                scorePlayer->setScore(player->getScore());
+            }
         }
         else playerOneTurn = aux;
         attacking = !attacking;
