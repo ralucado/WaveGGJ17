@@ -3,7 +3,7 @@ uniform float type;
 uniform sampler2D texture;
 
 void main(void) {
-    //transparencia entre 100 y 50
+    //transparencia entre 200 y 75
     float transpa = max (sin(time*5.)*200., 75.)*gl_TexCoord[0].y; 
 //     vec4 color = vec4 (246.,111.,231.,transpa)/255.;
 //     if (blue) color = vec4(0.,153.,253.,transpa)/255.;
