@@ -2,10 +2,12 @@
 
 Player::Player(int num) : Actor(num) {
     compas = Compas();
+    error = false;
 }
 
-Player::Player() : Actor(1) {
+Player::Player() : Actor() {
     compas = Compas();
+    error = false;
 }
 
 bool Player::updateLogic(float deltaTime, sf::RenderWindow *window) {
@@ -16,11 +18,18 @@ bool Player::updateLogic(float deltaTime, sf::RenderWindow *window) {
 bool Player::event(sf::Event e) {
     switch(e.type) {
     case (sf::Event::KeyPressed):
-        if(e.key.code == sf::Keyboard::C) compas.start();
+        if(e.key.code == sf::Keyboard::C) {
+            compas.start();
+            error = false;
+        }
         if(e.key.code == sf::Keyboard::Space) {
-            if (compas.isPressed() && animate == PlayerState::idle) {
+            if (animate == PlayerState::idle && !error) {
                 compas.add();
-                animate = PlayerState::attacking;
+                if (compas.isPressed()) animate = PlayerState::attacking;
+            }
+            else {
+                compas.end();
+                error = true; //weird?
             }
         }
         break;

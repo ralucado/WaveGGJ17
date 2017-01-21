@@ -1,6 +1,6 @@
 #include "iaenemy.hpp"
 
-IaEnemy::IaEnemy() : Actor(1) {}
+IaEnemy::IaEnemy() : Actor() {}
 IaEnemy::IaEnemy(int numplayer): Actor(numplayer) {}
 bool IaEnemy::updateLogic(float deltaTime, sf::RenderWindow *window) {
 

@@ -45,7 +45,11 @@ void Combat::updateEvents(sf::Event e) {
     if (playerOneTurn) {
         bool aux = player->event(e);
         if (!aux) { //end of player one ritm
-            if (!attacking) player->hitBy(enemy->getAttack());
+            if (!attacking) {
+                if(!player->hitBy(enemy->getAttack())) enemy->upScore();
+                std::cout << "player1: " << player->getScore() << std::endl;
+                std::cout << "player2: " << enemy->getScore() << std::endl;
+            }
             else playerOneTurn = aux;
             attacking = !attacking;
         }
@@ -58,7 +62,11 @@ void Combat::updateEvents(sf::Event e) {
 
 void Combat::enemyManager(bool aux) {
     if (aux) {
-        if (!attacking) enemy->hitBy(player->getAttack());
+        if (!attacking) {
+            if(!enemy->hitBy(player->getAttack())) player->upScore();
+            std::cout << "player1: " << player->getScore() << std::endl;
+            std::cout << "player2: " << enemy->getScore() << std::endl;
+        }
         else playerOneTurn = aux;
         attacking = !attacking;
     }
