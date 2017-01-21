@@ -57,7 +57,7 @@ void MyGame::update(float deltaTime, sf::RenderWindow*window) {
 
 void MyGame::draw(sf::RenderWindow*window) {
     //a e s t h e t i c s
-    window->clear(sf::Color::Cyan);
+    window->clear(sf::Color::Black);
     // draw shit
     _scenes[_scene]->draw(window);
     window->display();

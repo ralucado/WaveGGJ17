@@ -23,6 +23,7 @@ private:
     bool playerOneTurn, ia;
     Player player;
     Actor *enemy;
+    float time;
     sf::Texture _text;
     sf::Sprite _background;
     sf::Shader _shader;

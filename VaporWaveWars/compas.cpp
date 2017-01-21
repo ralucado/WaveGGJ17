@@ -7,7 +7,7 @@ Compas::Compas() {
 
 void Compas::start() {
     if (not isPress) {
-        std::cout << "start" << std::endl;
+//        std::cout << "start" << std::endl;
         isPress = true;
         spaceTime = 1;
         notes = std::vector<int>();
@@ -18,17 +18,17 @@ void Compas::add() {
     if (isPress) {
         notes.push_back(spaceTime);
         spaceTime = 1;
-        std::cout << "add" << std::endl;
+//        std::cout << "add" << std::endl;
     }
 }
 
 void Compas::end() {
     if (isPress) {
         isPress = false;
-        std::cout << "end" << std::endl;
-        for (int i = 0; i < notes.size(); ++i) {
-            std::cout << notes[i] << std::endl;
-        }
+//        std::cout << "end" << std::endl;
+//        for (int i = 0; i < notes.size(); ++i) {
+//            std::cout << notes[i] << std::endl;
+//        }
     }
 }
 
