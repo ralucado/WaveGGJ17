@@ -28,6 +28,7 @@ class SoundManager {
         //INITIALIZE YOUR VARIABLES AS STATIC sf::Music or sf::SoundBuffer
         /* Example:*/
         static sf::Music     worldMusic;
+        static sf::Music     clickTrack;
         static sf::SoundBuffer     atk1;
         static sf::SoundBuffer     atk2;
         static sf::SoundBuffer     atk3;

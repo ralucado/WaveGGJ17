@@ -14,8 +14,8 @@
 const int SCENE_NUM = 4;
 #define MARGEERR 0.05f
 #define BLACKVALUE 0.60f
-#define W_WIDTH  800
-#define W_HEIGHT 600
+#define W_WIDTH  1024
+#define W_HEIGHT 768
 const std::string WORK_DIR(getenv("WORK_DIR"));
 
 
