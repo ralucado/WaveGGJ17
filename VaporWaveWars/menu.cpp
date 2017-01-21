@@ -25,7 +25,7 @@ void Menu::draw(sf::RenderWindow* window){
     }
 }
 
-void Menu::updateButtons(sf::Event e){
+void Menu::updateEvents(sf::Event e){
 //    std::cout << "update menu buttons" << std::endl;
     for(unsigned int i = 0; i < _buttons.size(); ++i){
         _buttons[i]->handleMouseEvent(e);

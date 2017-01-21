@@ -36,7 +36,7 @@ void MyGame::update(float deltaTime, sf::RenderWindow*window) {
         case (sf::Event::MouseButtonPressed):
         case (sf::Event::MouseButtonReleased):
 
-             _scenes[_scene]->updateButtons(event);
+             _scenes[_scene]->updateEvents(event);
             switch(_scene){
             case(GameScene::menu):
                 //std::cout << "still in menu" << std::endl;
