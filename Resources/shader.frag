@@ -6,6 +6,7 @@ float rand(vec2 n) {
 }
 
 float line(float p, float x, float glow) {
+    if (abs(p - x) < 0.025) return 1; 
     return 1. - pow(abs(p - x), glow);
 }
 
@@ -13,10 +14,10 @@ float grid(vec2 uv) {
     float glow = 0.05;
     float c = line(uv.x, 0.25, glow) + line(uv.x, 0.75, glow)
             + line(uv.x, 0.5, glow)
-        	+ line(uv.x, 0.25, glow) + line(uv.x, 1.0, glow)
+        	+ line(uv.x, 0.0, glow) + line(uv.x, 1.0, glow)
         	+ line(uv.y, 0.25, glow) + line(uv.y, 0.75, glow)
         	+ line(uv.y, 0.5, glow)
-        	+ line(uv.y, 0.25, glow) + line(uv.y, 1.0, glow);   
+        	+ line(uv.y, 0.0, glow) + line(uv.y, 1.0, glow);   
     
     return c;
 }
@@ -24,16 +25,14 @@ float grid(vec2 uv) {
 void main(void) {
     vec2 umuv = (gl_FragCoord.xy / resolution.xy - .5) * 2.;
     vec2 uv = umuv;
-    float z = (abs(uv.y ) * .8 + 3.);
+    float z = (abs(uv.y ) * .8 + .2);
     
     uv.y *= 3.;
-    uv /= z*0.25;
-   
-    float clampfinite = abs(clamp(umuv.y, -1., 0.)) * pow(z, 1. / 10.);
+    uv /= z;
     
-    uv.y += abs(time * 0.1);
+    if (uv.y < umuv.y) uv.y += abs(time * 0.1);
+    else uv.y -= abs(time * 0.1);
     
-    float grain = (0.8 + 0.2 * rand(umuv + time));
     vec4 color = vec4(255, 120, 153, 255) / 255.;
-    gl_FragColor = (grid(fract(uv))) * grain * color * clampfinite;
+    gl_FragColor = (grid(fract(uv))) * color;
 }
