@@ -33,6 +33,7 @@ private:
     Score *scoreEnemy, *scorePlayer;
     void initShader();
     void enemyManager(bool aux);
+    void animationTo(bool toEnemy, float deltaTime);
 };
 
 #endif // COMBAT_H

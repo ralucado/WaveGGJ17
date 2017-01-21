@@ -32,11 +32,17 @@ void Combat::initShader() {
     _shader.setParameter("resolution", sf::Vector2f(W_WIDTH, W_HEIGHT));
     _shader.setParameter("time", time);
 
-     ASSERT(_haloT.loadFromFile(WORK_DIR+"Resources/platform-halo.png"));
-     _halo.setTexture(_haloT);
-     _halo.setPosition(W_WIDTH*0.05f, W_HEIGHT*0.5f);
+    ASSERT(_haloT.loadFromFile(WORK_DIR+"Resources/platform-halo.png"));
+    _halo.setTexture(_haloT);
+    _halo.setPosition(W_WIDTH*0.05f, W_HEIGHT*0.5f);
+    ASSERT(_plataformT.loadFromFile(WORK_DIR+"Resources/platforms-spreadsheet.png"));
+    _plataform.setTexture(_plataformT);
+    _plataform.setPosition(W_WIDTH*0.05f, W_HEIGHT*0.5f);
+
+    sf::IntRect rect = sf::IntRect(0, 0, _plataformT.getSize().x/2, _plataformT.getSize().y);
+    _plataform.setTextureRect(rect);
     _shaderHalo.loadFromFile(WORK_DIR+"Resources/halo.frag", sf::Shader::Fragment);
-    _shaderHalo.setParameter("blue", attacking);
+    _shaderHalo.setParameter("type", 0.0f);
     _shaderHalo.setParameter("time", time);
 
 }
@@ -49,10 +55,36 @@ void Combat::update(float deltaTime, sf::RenderWindow *window) {
     time += deltaTime;
     _shader.setParameter("time", time);
     _shaderHalo.setParameter("time", time);
+
+
+
+    if (playerOneTurn) {
+        if(_halo.getPosition().x != W_WIDTH*0.05f)
+            animationTo(false, deltaTime);
+    }
+    else  {
+        if(_halo.getPosition().x != W_WIDTH*0.65f)
+            animationTo(true, deltaTime);
+    }
+
+    if (!attacking) _shaderHalo.setParameter("type", 0.0f);
+    else {
+        if (playerOneTurn)_shaderHalo.setParameter("type", 2.0f);
+        else _shaderHalo.setParameter("type", 1.0f);
+    }
+
+    sf::IntRect rect;
+    if (playerOneTurn)
+        rect = sf::IntRect(0, 0, _plataformT.getSize().x/2, _plataformT.getSize().y);
+    else
+        rect = sf::IntRect(_plataformT.getSize().x/2, 0, _plataformT.getSize().x/2, _plataformT.getSize().y);
+    _plataform.setTextureRect(rect);
 }
 
 void Combat::draw(sf::RenderWindow *window) {
+
     window->draw(_background, &_shader);
+    window->draw(_plataform);
     player->draw(window);
     enemy->draw(window);
     window->draw(_halo, &_shaderHalo);
@@ -62,23 +94,20 @@ void Combat::draw(sf::RenderWindow *window) {
 
 void Combat::updateEvents(sf::Event e) {
     if (playerOneTurn) {
-        _halo.setPosition(W_WIDTH*0.05f, W_HEIGHT*0.5f);
-        bool aux = player->event(e, !attacking);
+        bool aux = player->event(e);
         if (!aux) { //end of player one ritm
 
-            if (!attacking) {
+            if (!attacking && !ia) {
                 if(!player->hitBy(enemy->getAttack())) {
                     scoreEnemy->incrisScore();
                 }
             }
             else playerOneTurn = aux;
             attacking = !attacking;
-            _shaderHalo.setParameter("blue", attacking);
         }
     }
     else if (!ia) {
-        _halo.setPosition(W_WIDTH*0.65f, W_HEIGHT*0.5f);
-        bool aux = !enemy->event(e, !attacking);
+        bool aux = !enemy->event(e);
         enemyManager(aux); //end of player two not ia ritm
     }
 }
@@ -92,6 +121,25 @@ void Combat::enemyManager(bool aux) {
         }
         else playerOneTurn = aux;
         attacking = !attacking;
-        _shaderHalo.setParameter("blue", attacking);
     }
+}
+
+
+void Combat::animationTo(bool toEnemy, float deltaTime) {
+   if (toEnemy) {
+        _halo.move(deltaTime*2000, 0.0f);
+        _plataform.move(deltaTime*2000, 0.0f);
+        if (_halo.getPosition().x > W_WIDTH*0.65f) {
+            _halo.setPosition(W_WIDTH*0.65f, _halo.getPosition().y);
+            _plataform.setPosition(W_WIDTH*0.65f, _plataform.getPosition().y);
+        }
+   }
+   else {
+       _halo.move(deltaTime*-2000, 0.0f);
+       _plataform.move(deltaTime*-2000, 0.0f);
+       if (_halo.getPosition().x < W_WIDTH*0.05f) {
+           _halo.setPosition(W_WIDTH*0.05f, _halo.getPosition().y);
+           _plataform.setPosition(W_WIDTH*0.05f, _plataform.getPosition().y);
+       }
+   }
 }

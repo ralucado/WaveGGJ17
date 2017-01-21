@@ -21,7 +21,7 @@ bool Player::updateLogic(float deltaTime, sf::RenderWindow *window) {
     return false;
 }
 
-bool Player::event(sf::Event e, bool def) {
+bool Player::event(sf::Event e) {
     switch(e.type) {
     case (sf::Event::KeyPressed):
         if(e.key.code == sf::Keyboard::C) {
@@ -34,10 +34,11 @@ bool Player::event(sf::Event e, bool def) {
                 if (compas.isPressed()) animate = PlayerState::attacking;
             }
             else {
-                compas.end();
-                if (!error || (error && animate == PlayerState::idle))
+                if (!error) {
+                    compas.end();
                     animate = PlayerState::hurt;
-                error = true;
+                    error = true;
+                }
             }
         }
         break;
