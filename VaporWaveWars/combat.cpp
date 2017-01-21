@@ -25,7 +25,6 @@ void Combat::draw(sf::RenderWindow *window) {
 }
 
 void Combat::updateEvents(sf::Event e) {
-//    std::cout << "hellow" << std::endl;
     if (playerOneTurn) playerOneTurn = player.event(e);
     else if (!ia) playerOneTurn = !enemy->event(e);
 }

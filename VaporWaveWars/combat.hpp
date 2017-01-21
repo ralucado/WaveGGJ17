@@ -23,6 +23,9 @@ private:
     bool playerOneTurn, ia;
     Player player;
     Actor *enemy;
+    sf::Sprite _background;
+    static sf::Shader _shader;
+
 };
 
 #endif // COMBAT_H
