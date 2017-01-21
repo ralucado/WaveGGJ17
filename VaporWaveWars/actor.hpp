@@ -14,7 +14,7 @@ public:
     void draw(sf::RenderWindow *window);
     bool hitBy(Compas enemy);
     Compas getAttack() const;
-    virtual bool event(sf::Event e, bool def) = 0;
+    virtual bool event(sf::Event e) = 0;
 
 protected:
     Compas compas;
