@@ -35,8 +35,9 @@ bool Player::event(sf::Event e, bool def) {
             }
             else {
                 compas.end();
+                if (!error || (error && animate == PlayerState::idle))
+                    animate = PlayerState::hurt;
                 error = true;
-                if (animate != PlayerState::inMidle) animate = PlayerState::hurt;
             }
         }
         break;
