@@ -5,7 +5,7 @@
 class Character : public sf::Sprite{
 private:
     //CONFIG
-    const double frameTime = 0.15;
+    const double frameTime = 0.2;
     const int numFrames = 4;
     const std::string spriteFile = WORK_DIR+"Resources/spreadsheet.png";
     //POSICIO PLAYER 1
@@ -23,6 +23,8 @@ private:
     float timestamp;
 
 public:
+    int idleFrame;
+
     Character();
     Character(int player);
     void update(float deltaTime);

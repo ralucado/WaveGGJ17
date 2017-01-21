@@ -5,7 +5,7 @@ Character::Character(int player){
     ASSERT(texture.loadFromFile(spriteFile));
     height = texture.getSize().y/6;
     width = texture.getSize().x/4;
-    timestamp = indexX = 0;
+    timestamp = indexX = idleFrame = 0;
     indexY = magicNumber;
     setTexture(texture);
     sf::IntRect rect = sf::IntRect(indexX*width, indexY*height, width, height);
@@ -26,26 +26,31 @@ void Character::update(float deltaTime){
     timestamp += deltaTime;
     if (timestamp >= frameTime){
         timestamp = 0;
+
+        std::cout << "PLAYER" << playerNum << ": indexX: " << indexX << ", idleFrame: " << idleFrame << std::endl;
         sf::IntRect rect = sf::IntRect(indexX*width, indexY*height, width, height);
         setTextureRect(rect);
 
         //Acabar automaticament la animacio de attack
-        if (actualState == PlayerState::attacking and indexX >= 3){
+        if (actualState == PlayerState::attacking and indexX%4 == 3){
             setState(PlayerState::idle);
         }
         else {
             indexX = (indexX+1)%4;
         }
+
+        idleFrame = (idleFrame+1)%4;
     }
 }
 
 void Character::setState(PlayerState::playerState state){
     actualState = state;
     if (state == PlayerState::idle){
-        indexX = 0;
+        indexX = idleFrame;
         indexY = 0 + magicNumber;
     }
     else if (state == PlayerState::attacking){
+        idleFrame = indexX;
         indexX = 0;
         indexY = 1 + magicNumber;
     }
