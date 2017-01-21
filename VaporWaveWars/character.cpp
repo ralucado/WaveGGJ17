@@ -31,12 +31,11 @@ void Character::update(float deltaTime){
         sf::IntRect rect = sf::IntRect(indexX*width, indexY*height, width, height);
         setTextureRect(rect);
 
+        indexX = (indexX+1)%4;
+
         //Acabar automaticament la animacio de attack
         if (actualState == PlayerState::attacking and indexX%4 == 3){
             setState(PlayerState::idle);
-        }
-        else {
-            indexX = (indexX+1)%4;
         }
 
         idleFrame = (idleFrame+1)%4;
@@ -50,7 +49,6 @@ void Character::setState(PlayerState::playerState state){
         indexY = 0 + magicNumber;
     }
     else if (state == PlayerState::attacking){
-        idleFrame = indexX;
         indexX = 0;
         indexY = 1 + magicNumber;
         std::string sample = "atk"+std::to_string(rand()%20+1);
