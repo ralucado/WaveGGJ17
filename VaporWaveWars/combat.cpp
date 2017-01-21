@@ -16,9 +16,9 @@ Combat::Combat() {
 }
 
 Combat::~Combat(){
-     for(std::vector<Wave*>::iterator w = waves.begin(); w != waves.end();){
+    for(std::vector<Wave*>::iterator w = waves.begin(); w != waves.end();){
         w=waves.erase(w);
-     }
+    }
 }
 
 
@@ -39,9 +39,9 @@ void Combat::initShader() {
     _shader.setParameter("resolution", sf::Vector2f(W_WIDTH, W_HEIGHT));
     _shader.setParameter("time", time);
 
-     ASSERT(_haloT.loadFromFile(WORK_DIR+"Resources/platform-halo.png"));
-     _halo.setTexture(_haloT);
-     _halo.setPosition(W_WIDTH*0.05f, W_HEIGHT*0.5f);
+    ASSERT(_haloT.loadFromFile(WORK_DIR+"Resources/platform-halo.png"));
+    _halo.setTexture(_haloT);
+    _halo.setPosition(W_WIDTH*0.05f, W_HEIGHT*0.5f);
     _shaderHalo.loadFromFile(WORK_DIR+"Resources/halo.frag", sf::Shader::Fragment);
     _shaderHalo.setParameter("blue", attacking);
     _shaderHalo.setParameter("time", time);
@@ -127,20 +127,36 @@ void Combat::doMahWaves(bool p){
         notes = player->getAttack().getNotes();
     }
     else notes = enemy->getAttack().getNotes();
-
-    int anterior = notes[0];
-    if(!p) anterior = 512+512*anterior;
-    else anterior = 512-512*anterior;
-    for(int i = 0; i < notes.size(); ++i){
-        std::cout << notes[i] << std::endl;
-        Wave* w = new Wave(p);
-        //if(!p) w->setPosition(anterior,500);
-        //else w->setPosition(512-512*anterior,500);
-        w->setPosition(anterior,500);
-        if(i<notes.size()) {
-            if(!p) anterior += 256*notes[i+1];
-            else anterior -= 256*notes[i+1];
+    if (notes.size() > 0){
+        int anterior = notes[0];
+        if(!p) anterior = 512+256*anterior;
+        else anterior = 512-256*anterior;
+        for(int i = 0; i < notes.size(); ++i){
+            std::cout << notes[i] << std::endl;
+            Wave* w = new Wave(p);
+            //if(!p) w->setPosition(anterior,500);
+            //else w->setPosition(512-512*anterior,500);
+            w->setPosition(anterior,200);
+            if(i<notes.size()) {
+                if(!p) anterior += 176*notes[i+1];
+                else anterior -= 176*notes[i+1];
+            }
+            waves.push_back(w);
         }
-        waves.push_back(w);
-    }
+
+//        int anterior = 1;
+//        if(!p) anterior = 512+256*anterior;
+//        else anterior = 512-256*anterior;
+//        for(int i = 0; i < 20; ++i){
+//            //std::cout << 0 << std::endl;
+//            Wave* w = new Wave(p);
+//            //if(!p) w->setPosition(anterior,500);
+//            //else w->setPosition(512-512*anterior,500);
+//            w->setPosition(anterior,200);
+//            if(i<20) {
+//                if(!p) anterior += 128*4;
+//                else anterior -= 128*4;
+//            }
+//            waves.push_back(w);
+        }
 }
