@@ -3,14 +3,17 @@
 MyGame::MyGame() {
     _scene = GameScene::menu;
     _scenes = std::vector<Scene*>(SCENE_NUM);
-    _scenes[GameScene::menu] = &_menu;
-    _scenes[GameScene::inGame] = &_combat;
-    _scenes[GameScene::help] = &_menu;
-    _scenes[GameScene::credits] = &_menu;
+    _menu = new Menu;
+    _scenes[GameScene::menu] = _menu;
+    _scenes[GameScene::inGame] = _combat;
+    _scenes[GameScene::help] = _menu;
+    _scenes[GameScene::credits] = _menu;
     std::cout << "in menu" << std::endl;
 }
 
 MyGame::~MyGame() {
+    delete _menu;
+    delete _combat;
 }
 
 MyGame* i(){
@@ -18,6 +21,12 @@ MyGame* i(){
 
 void MyGame::changeScene(GameScene::gameScene n){
     _scene = n;
+    if(_scenes[_scene] == NULL){
+        if(_scene == GameScene::inGame){
+            _combat = new Combat;
+            _scenes[_scene] = _combat;
+        }
+    }
 }
 
 // Main game loop

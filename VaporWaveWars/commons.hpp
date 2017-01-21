@@ -11,8 +11,8 @@
 
 const int SCENE_NUM = 4;
 
-#define MARGEERR 0.30f
-#define BLACKVALUE 0.00025f
+#define MARGEERR 0.05f
+#define BLACKVALUE 0.60f
 #define W_WIDTH  800
 #define W_HEIGHT 600
 const std::string WORK_DIR(getenv("WORK_DIR"));
@@ -41,7 +41,7 @@ namespace GameScene {
 }
 
 namespace PlayerState {
-    enum playerState{idle, attacking};
+    enum playerState{idle, attacking, inMidle};
 }
 
 #endif // COMMONS_HPP

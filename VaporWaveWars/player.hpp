@@ -12,6 +12,8 @@ public:
 protected:
     bool updateLogic(float deltaTime, sf::RenderWindow *window);
 
+private:
+    bool error;
 };
 
 #endif // PLAYER_H
