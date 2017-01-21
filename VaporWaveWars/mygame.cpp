@@ -38,7 +38,6 @@ void MyGame::update(float deltaTime, sf::RenderWindow*window) {
         case (sf::Event::MouseButtonPressed):
         case (sf::Event::MouseButtonReleased):
 
-            _scenes[_scene]->updateEvents(event);
             switch(_scene){
             case(GameScene::menu):
                 //std::cout << "still in menu" << std::endl;
@@ -46,11 +45,10 @@ void MyGame::update(float deltaTime, sf::RenderWindow*window) {
             default:
                 break;
             }
-
         default:
             break;
-
         }
+        _scenes[_scene]->updateEvents(event);
     }
 
     // do shit

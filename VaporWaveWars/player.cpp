@@ -2,9 +2,10 @@
 
 Player::Player() {
     animate = false;
+    compas = Compas();
 }
 
-bool Player::update(float deltaTime, sf::RenderWindow *window) {
+bool Player::updateLogic(float deltaTime, sf::RenderWindow *window) {
     if (deltaTime > BLACKVALUE) compas.incraeseTime();
     return false;
 }
@@ -17,15 +18,15 @@ bool Player::event(sf::Event e) {
             compas.add();
             animate = true;
         }
-    break;
+        break;
     case (sf::Event::KeyReleased):
         if (e.key.code == sf::Keyboard::C) {
             compas.end();
             return false;
         }
-    break;
+        break;
     default:
-    break;
+        break;
     }
     return true;
 }

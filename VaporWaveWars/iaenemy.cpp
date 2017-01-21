@@ -2,7 +2,7 @@
 
 IaEnemy::IaEnemy() {}
 
-bool IaEnemy::update(float deltaTime, sf::RenderWindow *window) {
+bool IaEnemy::updateLogic(float deltaTime, sf::RenderWindow *window) {
     //some playe return true
     return true;
 }

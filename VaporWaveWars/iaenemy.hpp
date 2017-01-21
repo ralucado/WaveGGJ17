@@ -6,8 +6,10 @@
 class IaEnemy : public Actor {
 public:
     IaEnemy();
-    bool update(float deltaTime, sf::RenderWindow *window) final override;
     bool event(sf::Event e) final override;
+protected:
+    bool updateLogic(float deltaTime, sf::RenderWindow *window);
+
 };
 
 #endif // IAENEMY_H

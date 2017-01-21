@@ -7,10 +7,12 @@
 class Player : public Actor {
 public:
     Player();
-    bool update(float deltaTime, sf::RenderWindow *window) final override;
     bool event(sf::Event e) final override;
 private:
     Compas compas;
+protected:
+    bool updateLogic(float deltaTime, sf::RenderWindow *window);
+
 };
 
 #endif // PLAYER_H

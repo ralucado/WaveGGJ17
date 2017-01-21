@@ -14,8 +14,8 @@ class Menu : public Scene{
         void draw(sf::RenderWindow *window) final override;
         void updateEvents(sf::Event e) final override;
     private:
-        Button _start = Button("/home/raluca/Projects/WaveGGJ17/build-VaporWaveWars-Desktop-Debug/Resources/buttontejempl.png");
-        Button _exit = Button("/home/raluca/Projects/WaveGGJ17/build-VaporWaveWars-Desktop-Debug/Resources/buttontejempl2.png");
+        Button _start = Button("./Resources/exit-spreadsheet.png");
+        Button _exit = Button("./Resources/exit-spreadsheet.png");
         std::vector<Button*> _buttons;
 };
 
