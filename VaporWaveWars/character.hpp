@@ -14,6 +14,8 @@ private:
     float posX2 = 300, posY2 = 0;
     //END CONFIG
 
+    int magicNumber;
+
     sf::Texture texture;
     int indexX, indexY, width, height;
     int playerNum;
