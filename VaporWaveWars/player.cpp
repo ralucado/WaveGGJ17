@@ -35,15 +35,16 @@ bool Player::event(sf::Event e) {
             }
             else {
                 if (!error) {
-                    compas.end();
+                    compas.fail();
                     animate = PlayerState::hurt;
                     error = true;
+                    return false;
                 }
             }
         }
         break;
     case (sf::Event::KeyReleased):
-        if (e.key.code == sf::Keyboard::C) {
+        if (compas.isPressed() and e.key.code == sf::Keyboard::C) {
             compas.end();
             return false;
         }

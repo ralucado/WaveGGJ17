@@ -3,9 +3,11 @@
 Compas::Compas() {
     spaceTime = 1;
     isPress = false;
+    failed = false;
 }
 
 void Compas::start() {
+    failed = false;
     if (not isPress) {
 //        std::cout << "start" << std::endl;
         isPress = true;
@@ -32,12 +34,21 @@ void Compas::end() {
     }
 }
 
+void Compas::fail() {
+    failed = true;
+    end();
+}
+
 void Compas::incraeseTime() {
     ++spaceTime;
 }
 
 bool Compas::isPressed() const {
     return isPress;
+}
+
+bool Compas::isFailed() const {
+    return failed;
 }
 
 int Compas::get (int i) const {

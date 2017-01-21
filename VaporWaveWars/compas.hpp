@@ -9,6 +9,7 @@
 class Compas {
 private:
     bool isPress;
+    bool failed;
     int spaceTime;
     std::vector<int> notes;
     int get(int i) const;
@@ -19,8 +20,10 @@ public:
     void start();
     void add();
     void end();
+    void fail();
     void incraeseTime();
     bool isPressed() const;
+    bool isFailed() const;
     bool operator ==(const Compas& d) const;
 };
 

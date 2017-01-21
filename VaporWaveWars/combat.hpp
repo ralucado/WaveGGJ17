@@ -22,7 +22,8 @@ public:
     void draw(sf::RenderWindow *window) final override;
     void updateEvents(sf::Event e) final override;
 private:
-    bool playerOneTurn, ia, attacking;
+    bool ia;
+    CombatState::combatState state;
     Actor *player, *enemy;
     float time;
 
@@ -34,6 +35,9 @@ private:
     void initShader();
     void enemyManager(bool aux);
     void animationTo(bool toEnemy, float deltaTime);
+    bool isAttack() const;
+    bool isPlayerOne() const;
+    void updateHalo();
 };
 
 #endif // COMBAT_H
