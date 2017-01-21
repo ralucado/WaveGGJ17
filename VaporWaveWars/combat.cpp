@@ -10,9 +10,9 @@ Combat::Combat() {
     scorePlayer = new Score(0);
     scoreEnemy = new Score(1);
     initShader();
-
     SoundManager::load();
     SoundManager::playMusic("music");
+
 }
 
 Combat::Combat(bool ia) {
@@ -37,6 +37,7 @@ void Combat::update(float deltaTime, sf::RenderWindow *window) {
     bool aux = enemy->update(deltaTime, window);
     if (ia) enemyManager(aux); //end of player two ia ritm
     time += deltaTime;
+
     _shader.setParameter("time", time);
 }
 

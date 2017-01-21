@@ -8,6 +8,7 @@ Menu::Menu() {
     _exit.turnOn();
     _buttons.push_back(&_start);
     _buttons.push_back(&_exit);
+
 }
 
 void Menu::update(float deltaTime, sf::RenderWindow*window){

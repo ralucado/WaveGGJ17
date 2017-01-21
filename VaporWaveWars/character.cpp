@@ -39,6 +39,12 @@ void Character::update(float deltaTime){
             setState(PlayerState::idle);
         }
 
+        //Acabar automaticament la animacio de hurt
+        if (actualState == PlayerState::hurt and indexX%4 == 3){
+            setState(PlayerState::idle);
+        }
+
+
         idleFrame = (idleFrame+1)%4;
     }
 }
@@ -56,7 +62,8 @@ void Character::setState(PlayerState::playerState state){
         SoundManager::playSound(sample);
         std::cout << "playing sample " << sample << std::endl;
     }
-    else if (false /*state == PlayerState::damaged*/){
+    else if (state == PlayerState::hurt){
+        std::cout << "i am hurt" << std::endl;
         indexX = 0;
         indexY = 2 + magicNumber;
     }

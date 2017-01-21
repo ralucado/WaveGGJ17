@@ -10,6 +10,8 @@ MyGame::MyGame() {
     _scenes[GameScene::credits] = _menu;
     std::cout << "in menu" << std::endl;
     SoundManager::load();
+    SoundManager::setLoop(true, "intro");
+    SoundManager::playMusic("intro");
 }
 
 MyGame::~MyGame() {
@@ -24,8 +26,11 @@ void MyGame::changeScene(GameScene::gameScene n){
     _scene = n;
     if(_scenes[_scene] == NULL){
         if(_scene == GameScene::inGame){
+            SoundManager::stopMusic("intro");
             _combat = new Combat;
             _scenes[_scene] = _combat;
+            SoundManager::setLoop(true, "clicks");
+            SoundManager::playMusic("clicks");
         }
     }
 }

@@ -13,6 +13,7 @@ protected:
     bool updateLogic(float deltaTime, sf::RenderWindow *window);
 
 private:
+    float time;
     bool error;
 };
 

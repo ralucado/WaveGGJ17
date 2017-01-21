@@ -7,6 +7,8 @@
 /* Example:
 sf::Music           SoundManager::overWorldMusic;*/
 sf::Music     SoundManager::worldMusic;
+sf::Music     SoundManager::clickTrack;
+
 sf::SoundBuffer     SoundManager::atk1;
 sf::SoundBuffer     SoundManager::atk2;
 sf::SoundBuffer     SoundManager::atk3;
@@ -39,8 +41,8 @@ void SoundManager::load(){
 
     //LOAD HERE YOUR SOUNDS AND MUSIC
     /* Example: */
-    musicMap["music"].openFromFile(WORK_DIR+"Resources/Sounds/wave.wav");
-
+    musicMap["intro"].openFromFile(WORK_DIR+"Resources/Sounds/intro.wav");
+    musicMap["clicks"].openFromFile(WORK_DIR+"Resources/Sounds/clicks.wav");
     ASSERT(atk1.loadFromFile(WORK_DIR+"Resources/Sounds/Samples/1.wav"));
     soundMap["atk1"].setBuffer(atk1);
     ASSERT(atk2.loadFromFile(WORK_DIR+"Resources/Sounds/Samples/2.wav"));

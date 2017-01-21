@@ -12,10 +12,10 @@
 #include <string>
 #include "soundmanager.hpp"
 const int SCENE_NUM = 4;
-#define MARGEERR 0.05f
-#define BLACKVALUE 0.60f
-#define W_WIDTH  800
-#define W_HEIGHT 600
+#define MARGEERR 0.2f
+#define BLACKVALUE 0.6f
+#define W_WIDTH  1024
+#define W_HEIGHT 768
 const std::string WORK_DIR(getenv("WORK_DIR"));
 
 
@@ -42,7 +42,7 @@ enum gameScene{menu,inGame,help,credits};
 }
 
 namespace PlayerState {
-enum playerState{idle, attacking, inMidle};
+enum playerState{idle, attacking, inMidle, hurt};
 }
 
 #endif // COMMONS_HPP

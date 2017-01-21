@@ -3,15 +3,21 @@
 Player::Player(int num) : Actor(num) {
     compas = Compas();
     error = false;
+    time = 0;
 }
 
 Player::Player() : Actor() {
     compas = Compas();
     error = false;
+    time = 0;
 }
 
 bool Player::updateLogic(float deltaTime, sf::RenderWindow *window) {
-    if (deltaTime > BLACKVALUE) compas.incraeseTime();
+    time += deltaTime;
+    if (time > BLACKVALUE) {
+        compas.incraeseTime();
+        time = 0;
+    }
     return false;
 }
 
@@ -30,6 +36,8 @@ bool Player::event(sf::Event e) {
             else {
                 compas.end();
                 error = true; //weird?
+                if (animate != PlayerState::inMidle) animate = PlayerState::hurt;
+
             }
         }
         break;
