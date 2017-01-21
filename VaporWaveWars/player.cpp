@@ -19,7 +19,7 @@ bool Player::event(sf::Event e) {
         if(e.key.code == sf::Keyboard::C) compas.start();
         if(e.key.code == sf::Keyboard::Space) {
             compas.add();
-            animate = true;
+            if (compas.isPressed() && !animate) animate = true;
         }
         break;
     case (sf::Event::KeyReleased):

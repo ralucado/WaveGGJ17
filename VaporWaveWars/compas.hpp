@@ -20,6 +20,7 @@ public:
     void add();
     void end();
     void incraeseTime();
+    bool isPressed() const;
     bool operator ==(const Compas& d) const;
 };
 

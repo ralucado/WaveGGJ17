@@ -36,6 +36,10 @@ void Compas::incraeseTime() {
     ++spaceTime;
 }
 
+bool Compas::isPressed() const {
+    return isPress;
+}
+
 int Compas::get (int i) const {
     return notes[i];
 }

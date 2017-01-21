@@ -1,12 +1,12 @@
 #include "combat.hpp"
 
 Combat::Combat() {
-//    ia = false;
-    ia = true;
+    ia = false;
+//    ia = true;
     attacking = playerOneTurn = true;
     player = new Player(0);
-    enemy = new IaEnemy(1);
-//    enemy = new Player(1);
+//    enemy = new IaEnemy(1);
+    enemy = new Player(1);
     initShader();
 }
 
