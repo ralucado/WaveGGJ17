@@ -157,8 +157,8 @@ void Combat::doMahWaves(bool p){
     else notes = enemy->getAttack().getNotes();
     if (notes.size() > 0){
         int anterior = notes[0];
-        if(!p) anterior = 512+256*anterior;
-        else anterior = 512-256*anterior;
+        if(!p) anterior = 256+256*anterior;
+        else anterior = 768-256*anterior;
         for(int i = 0; i < notes.size(); ++i){
             std::cout << notes[i] << std::endl;
             Wave* w = new Wave(p);
