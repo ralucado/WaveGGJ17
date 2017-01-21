@@ -21,7 +21,7 @@ bool Player::updateLogic(float deltaTime, sf::RenderWindow *window) {
     return false;
 }
 
-bool Player::event(sf::Event e) {
+bool Player::event(sf::Event e, bool def) {
     switch(e.type) {
     case (sf::Event::KeyPressed):
         if(e.key.code == sf::Keyboard::C) {
@@ -35,9 +35,8 @@ bool Player::event(sf::Event e) {
             }
             else {
                 compas.end();
-                error = true; //weird?
+                error = true;
                 if (animate != PlayerState::inMidle) animate = PlayerState::hurt;
-
             }
         }
         break;

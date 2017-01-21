@@ -5,19 +5,23 @@ float rand(vec2 n) {
     return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
 }
 
-float line(float p, float x, float glow) {
-    if (abs(p - x) < 0.025) return 1.; 
+float line(float p, float x, float glow, float thick) {
+    if (abs(p - x) < thick) return 1.; 
+    return 1. - pow(abs(p - x), glow);
+}
+
+float line2(float p, float x, float glow) {
     return 1. - pow(abs(p - x), glow);
 }
 
 float grid(vec2 uv) {
     float glow = 0.05;
-    float c = line(uv.x, 0.25, glow) + line(uv.x, 0.75, glow)
-            + line(uv.x, 0.5, glow)
-        	+ line(uv.x, 0.0, glow) + line(uv.x, 1.0, glow)
-        	+ line(uv.y, 0.25, glow) + line(uv.y, 0.75, glow)
-        	+ line(uv.y, 0.5, glow)
-        	+ line(uv.y, 0.0, glow) + line(uv.y, 1.0, glow);   
+    float c = line(uv.x, 0.25, glow, 0.025) + line(uv.x, 0.75, glow, 0.025)
+            + line(uv.x, 0.5, glow, 0.025)
+        	+ line(uv.x, 0.0,  glow, 0.025) + line(uv.x, 1.0, glow, 0.025)
+        	+ line(uv.y, 0.25, glow, 0.025) + line(uv.y, 0.75, glow, 0.025)
+        	+ line(uv.y, 0.5,  glow, 0.025)
+        	+ line(uv.y, 0.0,  glow, 0.025) + line(uv.y, 1.0, glow, 0.025);   
     
     return c;
 }
@@ -34,5 +38,6 @@ void main(void) {
     else uv.y -= abs(time * 0.1);
     
     vec4 color = vec4(255, 120, 153, 255) / 255.;
+    vec4 colorB = vec4(255,255,255,255)/ 255.;
     gl_FragColor = (grid(fract(uv))) * color;
 }

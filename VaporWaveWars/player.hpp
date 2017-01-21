@@ -8,7 +8,7 @@ class Player : public Actor {
 public:
     Player();
     Player(int num);
-    bool event(sf::Event e) final override;
+    bool event(sf::Event e, bool def) final override;
 protected:
     bool updateLogic(float deltaTime, sf::RenderWindow *window);
 

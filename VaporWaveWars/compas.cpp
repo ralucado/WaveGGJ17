@@ -25,10 +25,10 @@ void Compas::add() {
 void Compas::end() {
     if (isPress) {
         isPress = false;
-        std::cout << "end" << std::endl;
-        for (int i = 0; i < notes.size(); ++i) {
-            std::cout << notes[i] << std::endl;
-        }
+//        std::cout << "end" << std::endl;
+//        for (int i = 0; i < notes.size(); ++i) {
+//            std::cout << notes[i] << std::endl;
+//        }
     }
 }
 

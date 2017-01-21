@@ -51,7 +51,7 @@ void Combat::draw(sf::RenderWindow *window) {
 
 void Combat::updateEvents(sf::Event e) {
     if (playerOneTurn) {
-        bool aux = player->event(e);
+        bool aux = player->event(e, !attacking);
         if (!aux) { //end of player one ritm
             if (!attacking) {
                 if(!player->hitBy(enemy->getAttack())) {
@@ -63,7 +63,7 @@ void Combat::updateEvents(sf::Event e) {
         }
     }
     else if (!ia) {
-        bool aux = !enemy->event(e);
+        bool aux = !enemy->event(e, !attacking);
         enemyManager(aux); //end of player two not ia ritm
     }
 }
