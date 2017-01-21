@@ -5,6 +5,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <assert.h>
+#include <stdlib.h>     /* getenv */
 #include <iostream>
 #include <string>
 
@@ -14,6 +15,8 @@ const int SCENE_NUM = 4;
 #define BLACKVALUE 0.00025f
 #define W_WIDTH  800
 #define W_HEIGHT 600
+const std::string WORK_DIR(getenv("WORK_DIR"));
+
 
 #define ASSERT(expression) do \
 { \

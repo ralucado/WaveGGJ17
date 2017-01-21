@@ -23,7 +23,7 @@ void Combat::initShader() {
     time = 0;
     _text.create(W_WIDTH, W_HEIGHT);
     _background.setTexture(_text);
-    _shader.loadFromFile("./Resources/shader.frag", sf::Shader::Fragment);
+    _shader.loadFromFile(WORK_DIR+"Resources/shader.frag", sf::Shader::Fragment);
     _shader.setParameter("resolution", sf::Vector2f(W_WIDTH, W_HEIGHT));
 }
 

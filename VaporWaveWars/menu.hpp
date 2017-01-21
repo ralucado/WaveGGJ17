@@ -14,8 +14,8 @@ class Menu : public Scene{
         void draw(sf::RenderWindow *window) final override;
         void updateEvents(sf::Event e) final override;
     private:
-        Button _start = Button("./Resources/play-spreadsheet.png");
-        Button _exit = Button("./Resources/exit-spreadsheet.png");
+        Button _start = Button(WORK_DIR+"Resources/play-spreadsheet.png");
+        Button _exit = Button(WORK_DIR+"Resources/exit-spreadsheet.png");
         std::vector<Button*> _buttons;
 };
 

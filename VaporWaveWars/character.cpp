@@ -26,16 +26,16 @@ void Character::update(float deltaTime){
     timestamp += deltaTime;
     if (timestamp >= frameTime){
         timestamp = 0;
+        sf::IntRect rect = sf::IntRect(indexX*width, indexY*height, width, height);
+        setTextureRect(rect);
 
+        //Acabar automaticament la animacio de attack
         if (actualState == PlayerState::attacking and indexX >= 3){
             setState(PlayerState::idle);
         }
         else {
             indexX = (indexX+1)%4;
         }
-
-        sf::IntRect rect = sf::IntRect(indexX*width, indexY*height, width, height);
-        setTextureRect(rect);
     }
 }
 
