@@ -10,6 +10,9 @@
 
 const int SCENE_NUM = 4;
 
+#define MARGEERR 0.30f
+#define BLACKVALUE 0.00025f
+
 #define ASSERT(expression) do \
 { \
     if(!(expression)) { \

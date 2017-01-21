@@ -5,7 +5,6 @@ MyGame::MyGame() {
     _scenes = std::vector<Scene*>(SCENE_NUM);
     _scenes[GameScene::menu] = &_menu;
     std::cout << "in menu" << std::endl;
-
 }
 
 MyGame::~MyGame() {
@@ -21,6 +20,7 @@ void MyGame::changeScene(GameScene::gameScene n){
 
 // Main game loop
 void MyGame::update(float deltaTime, sf::RenderWindow*window) {
+//    std::cout << deltaTime << std::endl;
     sf::Event event;
     while(window->pollEvent(event)){
         switch (event.type) {

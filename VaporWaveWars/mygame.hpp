@@ -1,6 +1,7 @@
 #ifndef MYGAME_HPP
 #define MYGAME_HPP
 #include "game.hpp"
+
 #include "menu.hpp"
 
 class MyGame : public Game{
