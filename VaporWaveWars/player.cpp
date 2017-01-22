@@ -26,6 +26,7 @@ bool Player::event(sf::Event e) {
     case (sf::Event::KeyPressed):
         if(e.key.code == sf::Keyboard::C) {
             std::string sample = "note"+std::to_string(rand()%4+1);
+
             SoundManager::playSound(sample);
             std::cout << "playing sample " << sample << std::endl;
             compas.start();
