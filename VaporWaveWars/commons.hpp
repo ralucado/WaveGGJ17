@@ -13,7 +13,7 @@
 #include <string>
 #include "soundmanager.hpp"
 const int SCENE_NUM = 4;
-#define MARGEERR 0.2f
+#define MARGEERR 0.25f
 #define BLACKVALUE 0.4f
 #define W_WIDTH  1024
 #define W_HEIGHT 768

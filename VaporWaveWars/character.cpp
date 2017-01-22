@@ -51,23 +51,30 @@ void Character::setState(PlayerState::playerState state){
         indexX = 0;
         indexY = 1 + magicNumber;
         std::string sample = "atk"+std::to_string(rand()%20+1);
+        SoundManager::setVolume(100,sample);
+
         SoundManager::playSound(sample);
         //std::cout << "playing sample " << sample << std::endl;
     }
     else if (state == PlayerState::hurt){
-        std::cout << "i am hurt" << std::endl;
+        //std::cout << "i am hurt" << std::endl;
         indexX = 0;
         indexY = 2 + magicNumber;
         std::string sample = "fail"+std::to_string(rand()%6+1);
+        SoundManager::setVolume(100,sample);
+
         SoundManager::playSound(sample);
         //std::cout << "playing sample " << sample << std::endl;
     }
     else if (state == PlayerState::success){
-        std::cout << "i am succeed!" << std::endl;
+        //std::cout << "i am succeed!" << std::endl;
         indexX = 0;
         indexY = 3 + magicNumber;
-        //std::string sample = "succeed"+std::to_string(rand()%6+1);
-        //SoundManager::playSound(sample);
+        std::string sample = "bona"+std::to_string(rand()%8+1);
+        SoundManager::setVolume(10,sample);
+        SoundManager::playSound(sample);
+        std::cout << "playing sample " << sample << std::endl;
+
     }
 }
 
