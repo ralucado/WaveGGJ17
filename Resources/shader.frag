@@ -1,5 +1,6 @@
 uniform vec2 resolution;
 uniform float time;
+uniform float night;
 
 float rand(vec2 n) { 
     return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
@@ -36,8 +37,11 @@ void main(void) {
     
     if (uv.y < umuv.y) uv.y += abs(time * 0.1);
     else uv.y -= abs(time * 0.1);
-    
-    vec4 color = vec4(255, 120, 153, 255) / 255.;
-    vec4 colorB = vec4(255,255,255,255)/ 255.;
+    vec3 colorPink = vec3(255.,0.,255.);
+    vec3 colorBlue = vec3(0.,255.,255.);
+    vec4 color = vec4(((colorPink.x*night) + (colorBlue.x*(1.-night)))/2., 
+                      ((colorPink.y*night) + (colorBlue.y*(1.-night)))/2., 
+                      ((colorPink.z*night) + (colorBlue.z*(1.-night)))/2., 255) / 255.;
+//     color = vec4(122.,202.,255.,255.)/ 255.;
     gl_FragColor = (grid(fract(uv))) * color - line(umuv.y, 0., 0.175, 0.025) * color * 2.;
 }

@@ -10,6 +10,10 @@
 #include "soundmanager.hpp"
 #include "score.hpp"
 #include "wave.hpp"
+#include <time.h>
+
+#define UTC (0)
+
 class Combat : public Scene {
 
     public:
@@ -40,6 +44,7 @@ class Combat : public Scene {
         bool isPlayerOne() const;
         void updateHalo();
         void doMahWaves(bool p);
+        int aux;
 
 };
 

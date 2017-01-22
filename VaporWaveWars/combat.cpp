@@ -61,13 +61,24 @@ void Combat::updateHalo() {
 
 }
 
+float isNight() {
+    time_t rawtime;
+     struct tm * ptm;
+     time ( &rawtime );
+     ptm = gmtime ( &rawtime );
+
+     return (float ((ptm->tm_hour+UTC)%24))/(23.);
+}
+
 void Combat::initShader() {
     time = 0;
+    aux = 0;
     _text.create(W_WIDTH, W_HEIGHT);
     _background.setTexture(_text);
     _shader.loadFromFile(WORK_DIR+"Resources/shader.frag", sf::Shader::Fragment);
     _shader.setParameter("resolution", sf::Vector2f(W_WIDTH, W_HEIGHT));
     _shader.setParameter("time", time);
+    _shader.setParameter("night", isNight());
 
     ASSERT(_haloT.loadFromFile(WORK_DIR+"Resources/platform-halo.png"));
     _halo.setTexture(_haloT);
