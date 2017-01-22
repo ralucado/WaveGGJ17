@@ -4,6 +4,8 @@ Combat::Combat() {
     ia = false;
 //    ia = true;
     state = CombatState::player_atk;
+    readingCompas = false;
+    readCompas = 0;
     player = new Player(0);
     //    enemy = new IaEnemy(1);
     enemy = new Player(1);
@@ -33,6 +35,8 @@ Combat::Combat(bool ia) {
     if (ia) enemy = new IaEnemy(1);
     else enemy = new Player(1);
     initShader();
+    readingCompas = false;
+    readCompas = 0;
 }
 
 bool Combat::isAttack() const {
@@ -86,7 +90,7 @@ void Combat::initShader() {
 void Combat::update(float deltaTime, sf::RenderWindow *window) {
     player->update(deltaTime, window);
     bool aux = enemy->update(deltaTime, window);
-    if (ia) enemyManager(aux); //end of player two ia rythm
+    if (ia); //enemyManager(aux); //end of player two ia rythm
 
     time += deltaTime;
     _shader.setParameter("time", time);
@@ -140,54 +144,85 @@ void Combat::draw(sf::RenderWindow *window) {
 }
 
 void Combat::updateEvents(sf::Event e) {
-    if (isPlayerOne()) {
-        bool compasFinish = !player->event(e);
-        enemyManager(compasFinish);
-        if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::C && !isAttack()) doMahWaves(!isPlayerOne());
-    }
-    else if (!ia) {
-        bool compasFinish = !enemy->event(e);
-        enemyManager(compasFinish);
-        if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::C && !isAttack()) doMahWaves(!isPlayerOne());
+    if (isPlayerOne() or !ia) {
+        enemyManager(e);
     }
 }
 
-void Combat::enemyManager(bool compasFinish) {  //To do: considerar si hay ia
-    if(compasFinish) {
-        Compas compas;
+void Combat::enemyManager(sf::Event e) {  //To do: considerar si hay ia
+    if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::C && !isAttack()) doMahWaves(!isPlayerOne());
 
-        switch(state) {
-            case CombatState::player_def:
-                compas = enemy->getAttack();
-                if(!player->hitBy(compas)) {
-                    scoreEnemy->incrisScore();
-                }
+    Compas compas;
+
+    switch(state) {
+        case CombatState::player_def:
+            if(!readingCompas) {
+                readingCompas = true;
+                readCompas = 0;
+                std::cout << "Start reading pink defense" << std::endl;
+            }
+            compas = enemy->getAttack();
+            if(readCompas == compas.size()) {
                 state = CombatState::player_atk;
-                break;
-            case CombatState::player_atk:
+                readingCompas = false;
+            }
+            else {
+                std::cout << "Reading note " << readCompas << " out of " << compas.size() << std::endl;
+                DefenseResult::defenseResult defense = player->event(e, compas.get(readCompas));
+                if(defense == DefenseResult::fail) {
+                    scoreEnemy->incrisScore();
+                    state = CombatState::player_atk;
+                    readingCompas = false;
+                }
+                else if(defense == DefenseResult::success) {
+                    ++readCompas;
+                }
+            }
+            break;
+        case CombatState::player_atk:
+            if(!player->event(e)) {
                 compas = player->getAttack();
                 if(compas.isFailed()) {
                     state = CombatState::enemy_atk;
                 }
                 else state = CombatState::enemy_def;
-                break;
-            case CombatState::enemy_def:
-                compas = player->getAttack();
-                if(!enemy->hitBy(compas)) {
+            }
+            break;
+        case CombatState::enemy_def:
+            if(!readingCompas) {
+                readingCompas = true;
+                readCompas = 0;
+                std::cout << "Start reading blue defense" << std::endl;
+            }
+            compas = player->getAttack();
+            if(readCompas < compas.size()) {
+                std::cout << "Reading note " << readCompas << " out of " << compas.size() << std::endl;
+                DefenseResult::defenseResult defense = enemy->event(e, compas.get(readCompas));
+                if(defense == DefenseResult::fail) {
                     scorePlayer->incrisScore();
+                    state = CombatState::enemy_atk;
+                    readingCompas = false;
                 }
+                else if(defense == DefenseResult::success) {
+                    ++readCompas;
+                }
+            }
+            else {
                 state = CombatState::enemy_atk;
-                break;
-            case CombatState::enemy_atk:
+                readingCompas = false;
+            }
+            break;
+        case CombatState::enemy_atk:
+            if(!enemy->event(e)) {
                 compas = enemy->getAttack();
                 if(compas.isFailed()) {
                     state = CombatState::player_atk;
                 }
                 else state = CombatState::player_def;
-                break;
-            default:
-                break;
-        }
+            }
+            break;
+        default:
+            break;
     }
 }
 

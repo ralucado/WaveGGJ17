@@ -8,6 +8,7 @@ public:
     IaEnemy();
     IaEnemy(int player);
     bool event(sf::Event e) final override;
+    DefenseResult::defenseResult event(sf::Event e, int note) final override;
 protected:
     bool updateLogic(float deltaTime, sf::RenderWindow *window);
 

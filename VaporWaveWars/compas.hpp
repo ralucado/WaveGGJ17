@@ -12,18 +12,19 @@ private:
     bool failed;
     int spaceTime;
     std::vector<int> notes;
-    int get(int i) const;
-    int size() const;
 
 public:
     Compas();
+    int get(int i) const;
+    int size() const;
     void start();
     void add();
     void end();
     void fail();
-    void incraeseTime();
+    void increaseTime();
     bool isPressed() const;
     bool isFailed() const;
+    bool check(int note);
     bool operator ==(const Compas& d) const;
     const std::vector<int> &getNotes() const;
 };

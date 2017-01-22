@@ -15,6 +15,7 @@ public:
     bool hitBy(Compas enemy);
     Compas getAttack() const;
     virtual bool event(sf::Event e) = 0;
+    virtual DefenseResult::defenseResult event(sf::Event e, int note) = 0;
 
 protected:
     Compas compas;

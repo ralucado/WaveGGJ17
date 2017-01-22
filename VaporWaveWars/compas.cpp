@@ -39,7 +39,7 @@ void Compas::fail() {
     end();
 }
 
-void Compas::incraeseTime() {
+void Compas::increaseTime() {
     ++spaceTime;
 }
 
@@ -49,6 +49,17 @@ bool Compas::isPressed() const {
 
 bool Compas::isFailed() const {
     return failed;
+}
+
+bool Compas::check(int note) {
+    std::cout << "Checking note " << note << std::endl;
+
+    bool res = false;
+    if(isPress) {
+        res = (std::abs((float) note - spaceTime) / (float) note) < (MARGEERR);
+        spaceTime = 1;
+    }
+    return res;
 }
 
 const std::vector<int>& Compas::getNotes() const

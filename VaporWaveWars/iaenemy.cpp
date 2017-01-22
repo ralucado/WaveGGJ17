@@ -8,3 +8,5 @@ bool IaEnemy::updateLogic(float deltaTime, sf::RenderWindow *window) {
 }
 
 bool IaEnemy::event(sf::Event e) {return false;}
+
+DefenseResult::defenseResult IaEnemy::event(sf::Event e, int note) {return DefenseResult::fail;}
