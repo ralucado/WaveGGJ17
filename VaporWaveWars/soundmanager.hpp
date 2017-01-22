@@ -67,6 +67,10 @@ class SoundManager {
         static sf::SoundBuffer     bona6;
         static sf::SoundBuffer     bona7;
         static sf::SoundBuffer     bona8;
+        static sf::SoundBuffer     mod1;
+        static sf::SoundBuffer     mod2;
+        static sf::SoundBuffer     mod3;
+        static sf::SoundBuffer     mod4;
 
 
 
