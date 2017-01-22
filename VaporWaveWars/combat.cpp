@@ -207,7 +207,7 @@ void Combat::doMahWaves(bool p) {
             Wave* w = new Wave(p);
             //if(!p) w->setPosition(anterior,500);
             //else w->setPosition(512-512*anterior,500);
-            w->setPosition(anterior,W_HEIGHT/2);
+            w->setPosition(anterior,W_HEIGHT/2 + 17);
             if(i<notes.size()) {
                 if(!p) anterior += 176*notes[i+1];
                 else anterior -= 176*notes[i+1];
