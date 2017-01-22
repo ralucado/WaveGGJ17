@@ -12,7 +12,8 @@
 #include "wave.hpp"
 #include <time.h>
 
-#define UTC (0)
+#define PI 3.14159265
+
 
 class Combat : public Scene {
 

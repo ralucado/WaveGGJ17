@@ -66,8 +66,9 @@ float isNight() {
      struct tm * ptm;
      time ( &rawtime );
      ptm = gmtime ( &rawtime );
-
-     return (float ((ptm->tm_hour+UTC)%24))/(23.);
+     float hour = (float ((ptm->tm_hour+UTC)%24))/(23.);
+     float result = (std::cos(hour*(2*PI)) + 1.f)/2.;
+     return result;
 }
 
 void Combat::initShader() {
@@ -78,7 +79,7 @@ void Combat::initShader() {
     _shader.loadFromFile(WORK_DIR+"Resources/shader.frag", sf::Shader::Fragment);
     _shader.setParameter("resolution", sf::Vector2f(W_WIDTH, W_HEIGHT));
     _shader.setParameter("time", time);
-    _shader.setParameter("night", isNight());
+    _shader.setParameter("hour", isNight());
 
     ASSERT(_haloT.loadFromFile(WORK_DIR+"Resources/platform-halo.png"));
     _halo.setTexture(_haloT);
