@@ -23,6 +23,8 @@ void Game::run() {
     sf::RenderWindow window(sf::VideoMode(W_WIDTH, W_HEIGHT), "( ( ( Radio Wave ) ) )", sf::Style::Close);
     window.setFramerateLimit(25);
     window.setKeyRepeatEnabled(false);
+
+
     float oldTime = c.getElapsedTime().asSeconds();
     while (isRunning) {
         float time = c.getElapsedTime().asSeconds();
