@@ -141,14 +141,14 @@ void Combat::draw(sf::RenderWindow *window) {
 
 void Combat::updateEvents(sf::Event e) {
     if (isPlayerOne()) {
-        if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::C && !isAttack()) doMahWaves(!isPlayerOne());
         bool compasFinish = !player->event(e);
         enemyManager(compasFinish);
+        if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::C && !isAttack()) doMahWaves(!isPlayerOne());
     }
     else if (!ia) {
-        if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::C && !isAttack()) doMahWaves(!isPlayerOne());
         bool compasFinish = !enemy->event(e);
         enemyManager(compasFinish);
+        if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::C && !isAttack()) doMahWaves(!isPlayerOne());
     }
 }
 
@@ -207,7 +207,7 @@ void Combat::doMahWaves(bool p) {
             Wave* w = new Wave(p);
             //if(!p) w->setPosition(anterior,500);
             //else w->setPosition(512-512*anterior,500);
-            w->setPosition(anterior,200);
+            w->setPosition(anterior,W_HEIGHT/2);
             if(i<notes.size()) {
                 if(!p) anterior += 176*notes[i+1];
                 else anterior -= 176*notes[i+1];
