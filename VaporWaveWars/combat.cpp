@@ -141,12 +141,12 @@ void Combat::draw(sf::RenderWindow *window) {
 
 void Combat::updateEvents(sf::Event e) {
     if (isPlayerOne()) {
-        if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::C && !attacking) doMahWaves(!playerOneTurn);
+        if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::C && !isAttack()) doMahWaves(!isPlayerOne());
         bool compasFinish = !player->event(e);
         enemyManager(compasFinish);
     }
     else if (!ia) {
-        if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::C && !attacking) doMahWaves(!playerOneTurn);
+        if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::C && !isAttack()) doMahWaves(!isPlayerOne());
         bool compasFinish = !enemy->event(e);
         enemyManager(compasFinish);
     }
