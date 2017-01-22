@@ -152,28 +152,42 @@ void Combat::updateEvents(sf::Event e) {
     }
 }
 
-void Combat::enemyManager(bool compasFinish) {
+void Combat::enemyManager(bool compasFinish) {  //To do: considerar si hay ia
     if(compasFinish) {
         Compas compas;
-        if(isPlayerOne()) compas = enemy->getAttack();
-        else compas = player->getAttack();
 
-        if(!isAttack()) {
-            if(!ia) {
-                bool hit;
-                if(isPlayerOne()) hit = !player->hitBy(compas);
-                else hit = !enemy->hitBy(compas);
-                if(hit) {
-                    if(isPlayerOne())
-                        scoreEnemy->incrisScore();
-                    else
-                        scorePlayer->incrisScore();
+        switch(state) {
+            case CombatState::player_def:
+                compas = enemy->getAttack();
+                if(!player->hitBy(compas)) {
+                    scoreEnemy->incrisScore();
                 }
-            }
+                state = CombatState::player_atk;
+                break;
+            case CombatState::player_atk:
+                compas = player->getAttack();
+                if(compas.isFailed()) {
+                    state = CombatState::enemy_atk;
+                }
+                else state = CombatState::enemy_def;
+                break;
+            case CombatState::enemy_def:
+                compas = player->getAttack();
+                if(!enemy->hitBy(compas)) {
+                    scorePlayer->incrisScore();
+                }
+                state = CombatState::enemy_atk;
+                break;
+            case CombatState::enemy_atk:
+                compas = enemy->getAttack();
+                if(compas.isFailed()) {
+                    state = CombatState::player_atk;
+                }
+                else state = CombatState::player_def;
+                break;
+            default:
+                break;
         }
-        else if(compas.isFailed())
-            state = (CombatState::combatState) ((((int) state)+1) % 4);
-        state = (CombatState::combatState) ((((int) state)+1) % 4);
     }
 }
 
