@@ -26,6 +26,10 @@ bool Actor::update(float deltaTime, sf::RenderWindow *window) {
     else if (animate == PlayerState::inMidle) {
         if (character->isLastFrame()) animate = PlayerState::idle;
     }
+    else if (animate == PlayerState::success) {
+        character->setState(PlayerState::success);
+        animate = PlayerState::inMidle;
+    }
     return this->updateLogic(deltaTime, window);
 }
 
@@ -35,7 +39,11 @@ bool Actor::hitBy(Compas enemy) {
     else std::cout << "hit" << std::endl;
     if (!dodge) {
         character->setState(PlayerState::hurt);
-        animate = PlayerState::hurt;
+        animate = PlayerState::inMidle;
+    }
+    else {
+        character->setState(PlayerState::success);
+        animate = PlayerState::inMidle;
     }
     return dodge;
 }
