@@ -30,6 +30,7 @@ void MyGame::changeScene(GameScene::gameScene n){
             _combat = new Combat;
             _scenes[_scene] = _combat;
             SoundManager::setLoop(true, "clicks");
+            SoundManager::setVolume(85,"clicks");
             SoundManager::playMusic("clicks");
         }
     }
