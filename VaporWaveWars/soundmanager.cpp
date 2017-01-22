@@ -49,8 +49,6 @@ sf::SoundBuffer     SoundManager::bona7;
 sf::SoundBuffer     SoundManager::bona8;
 sf::SoundBuffer     SoundManager::mod1;
 sf::SoundBuffer     SoundManager::mod2;
-sf::SoundBuffer     SoundManager::mod3;
-sf::SoundBuffer     SoundManager::mod4;
 
 std::map<std::string, sf::Sound> SoundManager::soundMap;
 std::map<std::string, sf::Music> SoundManager::musicMap;
@@ -144,10 +142,6 @@ void SoundManager::load(){
     soundMap["mod1"].setBuffer(mod1);
     ASSERT(mod2.loadFromFile(WORK_DIR+"Resources/Sounds/NotesMod/2.ogg"));
     soundMap["mod2"].setBuffer(mod2);
-    ASSERT(mod3.loadFromFile(WORK_DIR+"Resources/Sounds/NotesMod/3.ogg"));
-    soundMap["mod3"].setBuffer(mod3);
-    ASSERT(mod4.loadFromFile(WORK_DIR+"Resources/Sounds/NotesMod/4.ogg"));
-    soundMap["mod4"].setBuffer(mod4);
 
 }
 
