@@ -11,10 +11,11 @@ public:
     bool event(sf::Event e) final override;
 protected:
     bool updateLogic(float deltaTime, sf::RenderWindow *window);
-
 private:
     float time;
     bool error;
+    bool mod;
+    float clock = 0.0;
 };
 
 #endif // PLAYER_H
