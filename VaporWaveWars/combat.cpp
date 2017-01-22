@@ -2,8 +2,8 @@
 
 Combat::Combat() {
     ia = false;
-    //    ia = true;
-    attacking = playerOneTurn = true;
+//    ia = true;
+    state = CombatState::player_atk;
     player = new Player(0);
     //    enemy = new IaEnemy(1);
     enemy = new Player(1);
@@ -29,10 +29,36 @@ Combat::~Combat(){
 Combat::Combat(bool ia) {
     this->ia = ia;
     player = new Player(0);
-    attacking = playerOneTurn = true;
+    state = CombatState::player_atk;
     if (ia) enemy = new IaEnemy(1);
     else enemy = new Player(1);
     initShader();
+}
+
+bool Combat::isAttack() const {
+    return state == CombatState::player_atk or state == CombatState::enemy_atk;
+}
+
+bool Combat::isPlayerOne() const {
+    return state == CombatState::player_def or state == CombatState::player_atk;
+}
+
+void Combat::updateHalo() {
+    switch(state) {
+    case CombatState::player_def:
+    case CombatState::enemy_def:
+        _shaderHalo.setParameter("type", 0.0f);
+        break;
+    case CombatState::enemy_atk:
+        _shaderHalo.setParameter("type", 1.0f);
+        break;
+    case CombatState::player_atk:
+        _shaderHalo.setParameter("type", 2.0f);
+        break;
+    default:
+        break;
+    }
+
 }
 
 void Combat::initShader() {
@@ -53,9 +79,8 @@ void Combat::initShader() {
     sf::IntRect rect = sf::IntRect(0, 0, _plataformT.getSize().x/2, _plataformT.getSize().y);
     _plataform.setTextureRect(rect);
     _shaderHalo.loadFromFile(WORK_DIR+"Resources/halo.frag", sf::Shader::Fragment);
-    _shaderHalo.setParameter("type", 0.0f);
     _shaderHalo.setParameter("time", time);
-
+    updateHalo();
 }
 
 void Combat::update(float deltaTime, sf::RenderWindow *window) {
@@ -78,7 +103,7 @@ void Combat::update(float deltaTime, sf::RenderWindow *window) {
 
 
 
-    if (playerOneTurn) {
+    if (isPlayerOne()) {
         if(_halo.getPosition().x != W_WIDTH*0.05f)
             toEnemy = false;
     }
@@ -87,14 +112,12 @@ void Combat::update(float deltaTime, sf::RenderWindow *window) {
             toEnemy = true;
     }
     animationTo(toEnemy, deltaTime);
-    if (!attacking) _shaderHalo.setParameter("type", 0.0f);
-    else {
-        if (playerOneTurn)_shaderHalo.setParameter("type", 2.0f);
-        else _shaderHalo.setParameter("type", 1.0f);
-    }
+
+    updateHalo();
+
 
     sf::IntRect rect;
-    if (playerOneTurn)
+    if (isPlayerOne())
         rect = sf::IntRect(0, 0, _plataformT.getSize().x/2, _plataformT.getSize().y);
     else
         rect = sf::IntRect(_plataformT.getSize().x/2, 0, _plataformT.getSize().x/2, _plataformT.getSize().y);
@@ -117,43 +140,44 @@ void Combat::draw(sf::RenderWindow *window) {
 }
 
 void Combat::updateEvents(sf::Event e) {
-    if (playerOneTurn) {
+    if (isPlayerOne()) {
         if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::C && !attacking) doMahWaves(!playerOneTurn);
-        _halo.setPosition(W_WIDTH*0.05f, W_HEIGHT*0.5f);
-        bool aux = player->event(e);
-        if (!aux) { //end of player one ritm
-
-            if (!attacking && !ia) {
-                if(!player->hitBy(enemy->getAttack())) {
-                    scoreEnemy->incrisScore();
-                }
-
-            }
-            else playerOneTurn = aux;
-            attacking = !attacking;
-        }
+        bool compasFinish = !player->event(e);
+        enemyManager(compasFinish);
     }
     else if (!ia) {
         if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::C && !attacking) doMahWaves(!playerOneTurn);
-        _halo.setPosition(W_WIDTH*0.65f, W_HEIGHT*0.5f);
-        bool aux = !enemy->event(e);
-        enemyManager(aux); //end of player two not ia ritm
+        bool compasFinish = !enemy->event(e);
+        enemyManager(compasFinish);
     }
 }
 
-void Combat::enemyManager(bool aux) {
-    if (aux) {
-        if (!attacking) {
-            if(!enemy->hitBy(player->getAttack())) {
-                scorePlayer->incrisScore();
+void Combat::enemyManager(bool compasFinish) {
+    if(compasFinish) {
+        Compas compas;
+        if(isPlayerOne()) compas = enemy->getAttack();
+        else compas = player->getAttack();
+
+        if(!isAttack()) {
+            if(!ia) {
+                bool hit;
+                if(isPlayerOne()) hit = !player->hitBy(compas);
+                else hit = !enemy->hitBy(compas);
+                if(hit) {
+                    if(isPlayerOne())
+                        scoreEnemy->incrisScore();
+                    else
+                        scorePlayer->incrisScore();
+                }
             }
         }
-        else playerOneTurn = aux;
-        attacking = !attacking;
+        else if(compas.isFailed())
+            state = (CombatState::combatState) ((((int) state)+1) % 4);
+        state = (CombatState::combatState) ((((int) state)+1) % 4);
     }
 }
 
-void Combat::doMahWaves(bool p){
+void Combat::doMahWaves(bool p) {
     std::cout << "defensa jugador " << p << std::endl;
     std::vector<int> notes;
     if(p){

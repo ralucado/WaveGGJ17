@@ -46,4 +46,8 @@ namespace PlayerState {
 enum playerState{idle, attacking, inMidle, hurt, success};
 }
 
+namespace CombatState {
+enum combatState{player_def = 0, player_atk = 1, enemy_def = 2, enemy_atk = 3};
+}
+
 #endif // COMMONS_HPP

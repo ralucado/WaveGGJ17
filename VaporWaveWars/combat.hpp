@@ -11,6 +11,7 @@
 #include "score.hpp"
 #include "wave.hpp"
 class Combat : public Scene {
+
     public:
         Combat();
         ~Combat();
@@ -26,17 +27,20 @@ class Combat : public Scene {
         bool playerOneTurn, ia, attacking, toEnemy;
         Actor *player, *enemy;
         float time;
-
+        CombatState::combatState state;
         std::vector<Wave*> waves;
         sf::Texture _text, _haloT, _plataformT, axisT;
         sf::Sprite _background, _halo, _plataform, _axis;
         sf::Shader _shader, _shaderHalo;
-
         Score *scoreEnemy, *scorePlayer;
         void initShader();
         void enemyManager(bool aux);
-        void doMahWaves(bool p);
         void animationTo(bool toEnemy, float deltaTime);
+        bool isAttack() const;
+        bool isPlayerOne() const;
+        void updateHalo();
+        void doMahWaves(bool p);
+
 };
 
 #endif // COMBAT_H
