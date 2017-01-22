@@ -9,6 +9,10 @@ Combat::Combat() {
     enemy = new Player(1);
     scorePlayer = new Score(0);
     scoreEnemy = new Score(1);
+    ASSERT(axisT.loadFromFile(WORK_DIR+"Resources/axis.png"));
+    _axis.setTexture(axisT);
+    _axis.setOrigin(axisT.getSize().x/2,axisT.getSize().y);
+    _axis.setPosition(W_WIDTH/2,W_HEIGHT/2+18);
     initShader();
     SoundManager::load();
     SoundManager::playMusic("music");
@@ -106,6 +110,7 @@ void Combat::draw(sf::RenderWindow *window) {
     window->draw(_halo, &_shaderHalo);
     scorePlayer->draw(window);
     scoreEnemy->draw(window);
+    window->draw(_axis);
     for(std::vector<Wave*>::iterator w = waves.begin(); w != waves.end(); ++w){
         window->draw(*(*w));
     }
@@ -166,8 +171,8 @@ void Combat::doMahWaves(bool p){
             //else w->setPosition(512-512*anterior,500);
             w->setPosition(anterior,200);
             if(i<notes.size()) {
-                if(!p) anterior += 184*notes[i+1];
-                else anterior -= 184*notes[i+1];
+                if(!p) anterior += 176*notes[i+1];
+                else anterior -= 176*notes[i+1];
             }
             waves.push_back(w);
         }

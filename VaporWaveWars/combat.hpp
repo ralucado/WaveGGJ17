@@ -28,8 +28,8 @@ class Combat : public Scene {
         float time;
 
         std::vector<Wave*> waves;
-        sf::Texture _text, _haloT, _plataformT;
-        sf::Sprite _background, _halo, _plataform;
+        sf::Texture _text, _haloT, _plataformT, axisT;
+        sf::Sprite _background, _halo, _plataform, _axis;
         sf::Shader _shader, _shaderHalo;
 
         Score *scoreEnemy, *scorePlayer;
