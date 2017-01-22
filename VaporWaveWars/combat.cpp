@@ -210,7 +210,7 @@ void Combat::enemyManager(bool compasFinish) {  //To do: considerar si hay ia
 }
 
 void Combat::doMahWaves(bool p) {
-    std::cout << "defensa jugador " << p << std::endl;
+    //std::cout << "defensa jugador " << p << std::endl;
     std::vector<int> notes;
     if(p){
         notes = player->getAttack().getNotes();
@@ -221,7 +221,7 @@ void Combat::doMahWaves(bool p) {
         if(!p) anterior = 256+256*anterior;
         else anterior = 768-256*anterior;
         for(int i = 0; i < notes.size(); ++i){
-            std::cout << notes[i] << std::endl;
+            //std::cout << notes[i] << std::endl;
             Wave* w = new Wave(p);
             //if(!p) w->setPosition(anterior,500);
             //else w->setPosition(512-512*anterior,500);
@@ -237,7 +237,7 @@ void Combat::doMahWaves(bool p) {
 //        if(!p) anterior = 512+256*anterior;
 //        else anterior = 512-256*anterior;
 //        for(int i = 0; i < 20; ++i){
-//            //std::cout << 0 << std::endl;
+//            ////std::cout << 0 << std::endl;
 //            Wave* w = new Wave(p);
 //            //if(!p) w->setPosition(anterior,500);
 //            //else w->setPosition(512-512*anterior,500);

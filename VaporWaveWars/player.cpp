@@ -35,7 +35,7 @@ bool Player::event(sf::Event e) {
             std::string sample = "mod"+std::to_string(rand()%2+1);
             if(!mod) sample = "note"+std::to_string(rand()%4+1);
             SoundManager::playSound(sample);
-            std::cout << "playing sample " << sample << std::endl;
+            //std::cout << "playing sample " << sample << std::endl;
             compas.start();
             error = false;
         }

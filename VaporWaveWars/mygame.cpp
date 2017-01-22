@@ -8,7 +8,7 @@ MyGame::MyGame() {
     _scenes[GameScene::inGame] = _combat;
     _scenes[GameScene::help] = _menu;
     _scenes[GameScene::credits] = _menu;
-    std::cout << "in menu" << std::endl;
+    //std::cout << "in menu" << std::endl;
     SoundManager::load();
     SoundManager::setLoop(true, "intro");
     SoundManager::playMusic("intro");
@@ -38,7 +38,7 @@ void MyGame::changeScene(GameScene::gameScene n){
 
 // Main game loop
 void MyGame::update(float deltaTime, sf::RenderWindow*window) {
-    //    std::cout << deltaTime << std::endl;
+    //    //std::cout << deltaTime << std::endl;
     sf::Event event;
     while(window->pollEvent(event)){
         switch (event.type) {
@@ -56,7 +56,7 @@ void MyGame::update(float deltaTime, sf::RenderWindow*window) {
 
             switch(_scene){
             case(GameScene::menu):
-                //std::cout << "still in menu" << std::endl;
+                ////std::cout << "still in menu" << std::endl;
                 break;
             default:
                 break;
