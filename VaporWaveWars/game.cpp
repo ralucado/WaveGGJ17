@@ -21,6 +21,7 @@ Game* Game::i() {
 void Game::run() {
     sf::Clock c;
     sf::RenderWindow window(sf::VideoMode(W_WIDTH, W_HEIGHT), "( ( ( Radio Waves ) ) )");
+    window.setKeyRepeatEnabled(false);
     float oldTime = c.getElapsedTime().asSeconds();
     while (isRunning) {
         float time = c.getElapsedTime().asSeconds();

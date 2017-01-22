@@ -51,6 +51,12 @@ bool Compas::isFailed() const {
     return failed;
 }
 
+const std::vector<int>& Compas::getNotes() const
+{
+    return notes;
+}
+
+
 int Compas::get (int i) const {
     return notes[i];
 }

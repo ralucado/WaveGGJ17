@@ -10,6 +10,7 @@ MyGame::MyGame() {
     _scenes[GameScene::credits] = _menu;
     std::cout << "in menu" << std::endl;
     SoundManager::load();
+    SoundManager::setGlobalSoundVolumen(50);
     SoundManager::setLoop(true, "intro");
     SoundManager::playMusic("intro");
 }

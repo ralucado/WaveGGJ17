@@ -3,7 +3,7 @@
 Character::Character(int player){
     playerNum = player;
     ASSERT(texture.loadFromFile(spriteFile));
-    height = texture.getSize().y/6;
+    height = texture.getSize().y/8;
     width = texture.getSize().x/4;
     timestamp = indexX = idleFrame = 0;
     indexY = magicNumber;
@@ -18,7 +18,7 @@ Character::Character(int player){
     }
     else{
         setPosition(posX2, posY2);
-        magicNumber = 3;
+        magicNumber = 4;
     }
 }
 
@@ -27,23 +27,15 @@ void Character::update(float deltaTime){
     if (timestamp >= frameTime){
         timestamp = 0;
 
-        //std::cout << "PLAYER" << playerNum << ": indexX: " << indexX << ", idleFrame: " << idleFrame << std::endl;
-
         sf::IntRect rect = sf::IntRect(indexX*width, indexY*height, width, height);
         setTextureRect(rect);
 
         indexX = (indexX+1)%4;
 
         //Acabar automaticament la animacio de attack
-        if (actualState == PlayerState::attacking and indexX%4 == 3){
+        if ((actualState == PlayerState::attacking or actualState == PlayerState::hurt or actualState == PlayerState::success) and indexX%4 == 3){
             setState(PlayerState::idle);
         }
-
-        //Acabar automaticament la animacio de hurt
-        if (actualState == PlayerState::hurt and indexX%4 == 3){
-            setState(PlayerState::idle);
-        }
-
 
         idleFrame = (idleFrame+1)%4;
     }
@@ -66,6 +58,14 @@ void Character::setState(PlayerState::playerState state){
         std::cout << "i am hurt" << std::endl;
         indexX = 0;
         indexY = 2 + magicNumber;
+        std::string sample = "fail"+std::to_string(rand()%6+1);
+        SoundManager::playSound(sample);
+        std::cout << "playing sample " << sample << std::endl;
+    }
+    else if (state == PlayerState::success){
+        std::cout << "i am succeed!" << std::endl;
+        indexX = 0;
+        indexY = 3 + magicNumber;
     }
 }
 

@@ -5,7 +5,7 @@ Combat::Combat() {
 //    ia = true;
     state = CombatState::player_atk;
     player = new Player(0);
-//    enemy = new IaEnemy(1);
+    //    enemy = new IaEnemy(1);
     enemy = new Player(1);
     scorePlayer = new Score(0);
     scoreEnemy = new Score(1);
@@ -14,6 +14,13 @@ Combat::Combat() {
     SoundManager::playMusic("music");
 
 }
+
+Combat::~Combat(){
+    for(std::vector<Wave*>::iterator w = waves.begin(); w != waves.end();){
+        w=waves.erase(w);
+    }
+}
+
 
 Combat::Combat(bool ia) {
     this->ia = ia;
@@ -79,20 +86,31 @@ void Combat::update(float deltaTime, sf::RenderWindow *window) {
 
     time += deltaTime;
     _shader.setParameter("time", time);
+    for(std::vector<Wave*>::iterator w = waves.begin(); w != waves.end();){
+        if ((*w)->getDirection() && (*w)->getPosition().x >= 1024) w=waves.erase(w);
+        else if (!(*w)->getDirection() && (*w)->getPosition().x <= 0) w=waves.erase(w);
+
+        else{
+            (*w)->update(deltaTime);
+            ++w;
+        }
+    }
     _shaderHalo.setParameter("time", time);
 
 
 
     if (isPlayerOne()) {
         if(_halo.getPosition().x != W_WIDTH*0.05f)
-            animationTo(false, deltaTime);
+            toEnemy = false;
     }
     else  {
         if(_halo.getPosition().x != W_WIDTH*0.65f)
-            animationTo(true, deltaTime);
+            toEnemy = true;
     }
+    animationTo(toEnemy, deltaTime);
 
     updateHalo();
+
 
     sf::IntRect rect;
     if (isPlayerOne())
@@ -111,14 +129,19 @@ void Combat::draw(sf::RenderWindow *window) {
     window->draw(_halo, &_shaderHalo);
     scorePlayer->draw(window);
     scoreEnemy->draw(window);
+    for(std::vector<Wave*>::iterator w = waves.begin(); w != waves.end(); ++w){
+        window->draw(*(*w));
+    }
 }
 
 void Combat::updateEvents(sf::Event e) {
     if (isPlayerOne()) {
+        if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::C && !attacking) doMahWaves(!playerOneTurn);
         bool compasFinish = !player->event(e);
         enemyManager(compasFinish);
     }
     else if (!ia) {
+        if(e.type == sf::Event::KeyPressed && e.key.code == sf::Keyboard::C && !attacking) doMahWaves(!playerOneTurn);
         bool compasFinish = !enemy->event(e);
         enemyManager(compasFinish);
     }
@@ -127,15 +150,15 @@ void Combat::updateEvents(sf::Event e) {
 void Combat::enemyManager(bool compasFinish) {
     if(compasFinish) {
         Compas compas;
-        if(isPlayerOne()) compas = player->getAttack();
-        else compas = enemy->getAttack();
+        if(isPlayerOne()) compas = enemy->getAttack();
+        else compas = player->getAttack();
 
         if(!isAttack()) {
             if(!ia) {
                 bool hit;
                 if(isPlayerOne()) hit = !player->hitBy(compas);
                 else hit = !enemy->hitBy(compas);
-                if(!hit) {
+                if(hit) {
                     if(isPlayerOne())
                         scoreEnemy->incrisScore();
                     else
@@ -147,6 +170,48 @@ void Combat::enemyManager(bool compasFinish) {
             state = (CombatState::combatState) ((((int) state)+1) % 4);
         state = (CombatState::combatState) ((((int) state)+1) % 4);
     }
+}
+
+void Combat::doMahWaves(bool p) {
+    std::cout << "defensa jugador " << p << std::endl;
+    std::vector<int> notes;
+    if(p){
+        notes = player->getAttack().getNotes();
+    }
+    else notes = enemy->getAttack().getNotes();
+    if (notes.size() > 0){
+        int anterior = notes[0];
+        if(!p) anterior = 512+256*anterior;
+        else anterior = 512-256*anterior;
+        for(int i = 0; i < notes.size(); ++i){
+            std::cout << notes[i] << std::endl;
+            Wave* w = new Wave(p);
+            //if(!p) w->setPosition(anterior,500);
+            //else w->setPosition(512-512*anterior,500);
+            w->setPosition(anterior,200);
+            if(i<notes.size()) {
+                if(!p) anterior += 184*notes[i+1];
+                else anterior -= 184*notes[i+1];
+            }
+            waves.push_back(w);
+        }
+
+//        int anterior = 1;
+//        if(!p) anterior = 512+256*anterior;
+//        else anterior = 512-256*anterior;
+//        for(int i = 0; i < 20; ++i){
+//            //std::cout << 0 << std::endl;
+//            Wave* w = new Wave(p);
+//            //if(!p) w->setPosition(anterior,500);
+//            //else w->setPosition(512-512*anterior,500);
+//            w->setPosition(anterior,200);
+//            if(i<20) {
+//                if(!p) anterior += 128*4;
+//                else anterior -= 128*4;
+//            }
+//            waves.push_back(w);
+        }
+
 }
 
 

@@ -30,16 +30,17 @@ bool Actor::update(float deltaTime, sf::RenderWindow *window) {
 }
 
 bool Actor::hitBy(Compas enemy) {
-    bool hit = enemy == compas;
-    if (hit) std::cout << "dodge" << std::endl;
+    bool dodge = enemy == compas;
+    if (dodge) std::cout << "dodge" << std::endl;
     else std::cout << "hit" << std::endl;
-    if (!hit) {
+    if (!dodge) {
         character->setState(PlayerState::hurt);
-        animate = PlayerState::inMidle;
+        animate = PlayerState::hurt;
     }
-    return hit;
+    return dodge;
 }
 
 Compas Actor::getAttack() const {
     return compas;
 }
+

@@ -49,6 +49,16 @@ class SoundManager {
         static sf::SoundBuffer     atk18;
         static sf::SoundBuffer     atk19;
         static sf::SoundBuffer     atk20;
+        static sf::SoundBuffer     fail1;
+        static sf::SoundBuffer     fail2;
+        static sf::SoundBuffer     fail3;
+        static sf::SoundBuffer     fail4;
+        static sf::SoundBuffer     fail5;
+        static sf::SoundBuffer     fail6;
+        static sf::SoundBuffer     note1;
+        static sf::SoundBuffer     note2;
+        static sf::SoundBuffer     note3;
+        static sf::SoundBuffer     note4;
 
 
 
