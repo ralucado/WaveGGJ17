@@ -174,6 +174,9 @@ void Combat::enemyManager(bool compasFinish) {  //To do: considerar si hay ia
                 if(!player->hitBy(compas)) {
                     scoreEnemy->incrisScore();
                 }
+                else {
+                    scorePlayer->incrisScore();
+                }
                 state = CombatState::player_atk;
                 break;
             case CombatState::player_atk:
@@ -187,6 +190,9 @@ void Combat::enemyManager(bool compasFinish) {  //To do: considerar si hay ia
                 compas = player->getAttack();
                 if(!enemy->hitBy(compas)) {
                     scorePlayer->incrisScore();
+                }
+                else {
+                    scoreEnemy->incrisScore();
                 }
                 state = CombatState::enemy_atk;
                 break;
